@@ -18,4 +18,4 @@ Whenever the user is surfing online, Kids Portal is running an algorithm that ex
 soon...
 
 
-Jae Allen R. Nuguid - September 01, 2017
+Jae Allen R. Nuguid - September 18, 2017
