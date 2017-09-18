@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:title="Kidrex"
+        android:summary="@string/action_Kidrex"
+        android:key="Kidrex"
+        android:defaultValue="true" />
+
+    <CheckBoxPreference
+        android:title="Kiddle"
+        android:summary="@string/action_Kiddle"
+        android:key="Kiddle"
+        android:defaultValue="true" />
+
+    <CheckBoxPreference
+        android:title="Google"
+        android:summary="@string/action_Google"
+        android:key="Google"
+        android:defaultValue="true" />
+
+    <CheckBoxPreference
+        android:title="Youtube"
+        android:summary="@string/action_Youtube"
+        android:key="Youtube"
+        android:defaultValue="true" />
+
+</PreferenceScreen>
