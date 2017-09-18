@@ -1,59 +1,22 @@
-# Browser
+# Kids Portal: A Child-safe Android Web Browser 
+<center>
+<a href="https://www.linkedin.com/in/jaenuguid/">
+  <img src="https://github.com/JaeNuguid/Kids-Portal-Version-2/blob/master/newKidsPortal/Resources/KidsPortal.png?raw=true" width="250" height="250"/>
+</a>
+</center>
 
-A simple Android browser based on webview. The goal is to provide a lightweight but power full browser. It is based on several 
-lists (see below) and has only five tabs (Who needs more?).
+## What is it?
+Kids Portal is a lightweight web browser. It is not meant to replace full featured, robust desktop web browsers such as Google Chrome. Kids Portal functionality is intentionally limited to the protection of the user.
+Kids Portal is a child-safe web browser, where it aims to help parents to worry less for the safety of their children while surfing the internet. It is an easy-to-use and lightweight internet browser software. Kids Portal is an extra layer of protection to keep your kids safe and prevent them from being exposed to any inappropriate or explicit adult material on the internet. Kids Portal's real-time protection is what separates it from any existing similar software. This software supports English and Tagalog language for real-time protection, although you can add different languages as well.
 
-<a href="https://f-droid.org/packages/de.baumann.browser/" target="_blank">
-<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80"/></a>
+## What does it do?
+Firstly, unlike any similar web browser, with an intention to protect the user from inappropriate content, Kids Portal does not have a database of flagged or malicious websites, it does not have a list of URLs to block. What Kids Portal have is a locally stored library of words, words that are inappropriate such as profanities and swear words, words that children should not be exposed to.
 
+## How?
+Whenever the user is surfing online, Kids Portal is running an algorithm that extracts or scrapes the text from the web page, and then checking it if it contains an inappropriate word. If it does, the page will not be blocked, but the user will not be able to access it. A bit of contradiction, but the simple explanation is, it does not block any website, but it blocks the page that contains a bad word. Meaning, the blocking is dependent upon the content, not the URL or such.
 
-### Links:
-- Download [Releases](https://github.com/scoute-dich/browser/releases)
-- Watch [Changelog](https://github.com/scoute-dich/browser/blob/master/CHANGELOG.md)
-- See [license](https://github.com/scoute-dich/browser/blob/master/LICENSE.md)
-- See [screenshots](https://github.com/scoute-dich/browser/blob/master/SCREENSHOTS.md)
-- [XDA - Link](http://forum.xda-developers.com/android/apps-games/app-browser-t3500091)
-
-### The lists:
-
-- bookmarks
-- history
-- readLater: links not worth to be a bookmark, but at the moment you do not want to read...
-- passStorage: save links withe login data (username, password)
+## Installation
+soon...
 
 
-### Security/Data:
-
-- enable/disable cookies, javascript, location access, form data
-- whitelist for javascript
-- pin protection
-- toggle image loading
-- offline use
-- backup databases
-- AdBlocker
-
-
-### UI/Handling:
-
-- optimized for one hand handling (omnibox at bottom)
-- Android 7 app shortcuts
-- full material design
-- Navigation through websites with arrows
-- fullscreen browsing (optional)
-- request desktop site
-- five tabs
-
-
-### Search:
-
-- fast search on different websites
-- search on site
-
-
-### Some nice extra features:
-
-- Adblocker
-- open links in background
-- Websearch (from shared text)
-- screenshots of the whole website
-- build in file browser (open, share, rename, delete files)
+Jae Allen R. Nuguid - September 01, 2017
