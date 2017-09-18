@@ -230,10 +230,10 @@ public class helper_main {
 
         switch (theme) {
             case "0":
-                activity.setTheme(R.style.AppTheme);
+                activity.setTheme(R.style.AppTheme_blue);
                 break;
             case "1":
-                activity.setTheme(R.style.AppTheme_blue);
+                activity.setTheme(R.style.AppTheme);
                 break;
             case "2":
                 activity.setTheme(R.style.AppTheme_pink);

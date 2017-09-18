@@ -67,8 +67,10 @@ public class Activity_settings extends AppCompatActivity {
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPref.edit().putString("started", "").apply();
 
+
         // Display the fragment as the activity_screen_main content
         getFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsFragment()).commit();
+
     }
 
     public static class SettingsFragment extends PreferenceFragment {
@@ -146,6 +148,7 @@ public class Activity_settings extends AppCompatActivity {
             addSettings_appListener();
             addSettings_dataListener();
             addSettings_searchMainListener();
+
         }
     }
 

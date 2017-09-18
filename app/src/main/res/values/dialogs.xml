@@ -6,7 +6,7 @@
 
     <string name="about_title">Copyright © 2017  by Jae Allen Nuguid</string>
     <string name="about_text">
-        For more information visit the project site on github: https://github.com/JaeNuguid&lt;br>&lt;br>
+        For more information visit the project site on github: https://github.com/JaeNuguid/Kids-Portal-Android&lt;br>&lt;br>
 
         This program is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
@@ -160,8 +160,8 @@
     </string-array>
 
     <string-array name="listArrayTheme">
-        <item>Green (green|orange)</item>
         <item>Blue (blue|orange)</item>
+        <item>Green (green|orange)</item>
         <item>Pink (pink|orange)</item>
         <item>Purple (purple|orange)</item>
         <item>Teal (teal|orange)</item>

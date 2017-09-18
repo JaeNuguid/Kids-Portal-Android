@@ -31,15 +31,15 @@ public class Activity_intro extends OnboarderActivity {
 
         // You can define title and description colors (by default white)
         onboarderPage1.setTitleColor(R.color.colorAccent);
-        onboarderPage1.setBackgroundColor(R.color.colorPrimaryDark);
+        onboarderPage1.setBackgroundColor(R.color.colorPrimary_blue);
         onboarderPage2.setTitleColor(R.color.colorAccent);
-        onboarderPage2.setBackgroundColor(R.color.colorPrimaryDark);
+        onboarderPage2.setBackgroundColor(R.color.colorPrimary_blue);
         onboarderPage3.setTitleColor(R.color.colorAccent);
-        onboarderPage3.setBackgroundColor(R.color.colorPrimaryDark);
+        onboarderPage3.setBackgroundColor(R.color.colorPrimary_blue);
         onboarderPage4.setTitleColor(R.color.colorAccent);
-        onboarderPage4.setBackgroundColor(R.color.colorPrimaryDark);
+        onboarderPage4.setBackgroundColor(R.color.colorPrimary_blue);
         onboarderPage5.setTitleColor(R.color.colorAccent);
-        onboarderPage5.setBackgroundColor(R.color.colorPrimaryDark);
+        onboarderPage5.setBackgroundColor(R.color.colorPrimary_blue);
 
         // Add your pages to the fragments
         onboarderPages.add(onboarderPage1);

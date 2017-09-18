@@ -104,10 +104,11 @@ public class helper_browser {
                     helper_editText.showKeyboard(activity, editText, 3, sharedPref.getString("webView_url", ""), activity.getString(R.string.app_search_hint));
                     editText.selectAll();
                 } else {
-                    Log.i("Browser", "Switched to list");
+                    Log.i("KidsPortal", "Switched to list");
                 }
             }
         });
+
     }
 
 
@@ -174,6 +175,7 @@ public class helper_browser {
         } else {
             sw_swipe.setChecked(false);
         }
+
         whiteList_js.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -447,7 +449,7 @@ public class helper_browser {
                 s = tab_string;
             }
         } catch (Exception e) {
-            Log.e("Browser", "Unable to get String", e);
+            Log.e("KidsPortal", "Unable to get String", e);
             s = activity.getString(R.string.context_tab);
         }
         return s;
@@ -466,7 +468,7 @@ public class helper_browser {
                 s = tab_string;
             }
         } catch (Exception e) {
-            Log.e("Browser", "Unable to get String", e);
+            Log.e("KidsPortal", "Unable to get String", e);
             s = activity.getString(R.string.context_tab);
         }
         return s;
@@ -485,7 +487,7 @@ public class helper_browser {
                 s = tab_string;
             }
         } catch (Exception e) {
-            Log.e("Browser", "Unable to get String", e);
+            Log.e("KidsPortal", "Unable to get String", e);
             s = activity.getString(R.string.context_tab);
         }
         return s;
@@ -504,7 +506,7 @@ public class helper_browser {
                 s = tab_string;
             }
         } catch (Exception e) {
-            Log.e("Browser", "Unable to get String", e);
+            Log.e("KidsPortal", "Unable to get String", e);
             s = activity.getString(R.string.context_tab);
         }
         return s;
@@ -523,7 +525,7 @@ public class helper_browser {
                 s = tab_string;
             }
         } catch (Exception e) {
-            Log.e("Browser", "Unable to get String", e);
+            Log.e("KidsPortal", "Unable to get String", e);
             s = activity.getString(R.string.context_tab);
         }
         return s;

@@ -78,7 +78,7 @@ public class helper_toolbar {
             Uri uri = Uri.fromFile(new File(activity.getFilesDir() + picture));
             Picasso.with(activity).load(uri).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageView);
         } catch (Exception e) {
-            Log.w("Browser", "Error load thumbnail", e);
+            Log.w("KidsPortal", "Error load thumbnail", e);
             imageView.setVisibility(View.GONE);
         }
     }

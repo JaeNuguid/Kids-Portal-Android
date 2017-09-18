@@ -194,7 +194,7 @@ public class Fragment_Files extends Fragment {
                         iv2.setVisibility(View.INVISIBLE);
                         Picasso.with(getActivity()).load(uri).resize(76, 76).centerCrop().memoryPolicy(MemoryPolicy.NO_CACHE).into(iv);
                     } catch (Exception e) {
-                        Log.w("Browser", "Error load thumbnail", e);
+                        Log.w("KidsPortal", "Error load thumbnail" , e);
                         iv.setImageResource(R.drawable.file_image);
                     }
                 } else if (files_icon.matches("(.vcs|.vcf|.css|.ics|.conf|.config|.java|.html)")) {

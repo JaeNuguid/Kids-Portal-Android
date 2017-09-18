@@ -132,6 +132,7 @@ public class helper_webView {
             sharedPref.edit().putString("java_string", activity.getString(R.string.app_no)).apply();
         }
 
+
         if (sharedPref.getBoolean ("pictures", false)){
             webView.getSettings().setLoadsImagesAutomatically(true);
             sharedPref.edit().putString("pictures_string", activity.getString(R.string.app_yes)).apply();
@@ -319,7 +320,7 @@ public class helper_webView {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         String text = editText.getText().toString();
-        String searchEngine = sharedPref.getString("searchEngine", "https://duckduckgo.com/?q=");
+        String searchEngine = sharedPref.getString("searchEngine", "http://www.kidrex.org/results/?q=");
         String wikiLang = sharedPref.getString("wikiLang", "en");
 
         if (text.startsWith("http")) {
@@ -330,69 +331,9 @@ public class helper_webView {
             mWebView.loadUrl("https://" + text);
         } else {
 
-            String subStr = null;
-
-            if (text.length() > 3) {
-                subStr=text.substring(3);
-            }
-
-            if (text.contains(".w ")) {
-                mWebView.loadUrl("https://" + wikiLang + ".wikipedia.org/wiki/Spezial:Suche?search=" + subStr);
-            } else if (text.startsWith(".f ")) {
-                mWebView.loadUrl("https://www.flickr.com/search/?advanced=1&license=2%2C3%2C4%2C5%2C6%2C9&text=" + subStr);
-            } else  if (text.startsWith(".m ")) {
-                mWebView.loadUrl("https://metager.de/meta/meta.ger3?focus=web&eingabe=" + subStr);
-            } else if (text.startsWith(".g ")) {
-                mWebView.loadUrl("https://github.com/search?utf8=✓&q=" + subStr);
-            } else if (text.startsWith(".e ")) {
-                mWebView.loadUrl("https://encrypted.google.com/search?q=" + subStr);
-            } else  if (text.startsWith(".s ")) {
-                if (Locale.getDefault().getLanguage().contentEquals("jae")){
-                    mWebView.loadUrl("https://startpage.com/do/search?query=" + subStr + "&lui=deutsch&l=deutsch");
-                } else {
-                    mWebView.loadUrl("https://startpage.com/do/search?query=" + subStr);
-                }
-            } else if (text.startsWith(".G ")) {
-                if (Locale.getDefault().getLanguage().contentEquals("jae")){
-                    mWebView.loadUrl("https://www.google.de/search?&q=" + subStr);
-                } else {
-                    mWebView.loadUrl("https://www.google.com/search?&q=" + subStr);
-                }
-            } else  if (text.startsWith(".y ")) {
-                if (Locale.getDefault().getLanguage().contentEquals("jae")){
-                    mWebView.loadUrl("https://www.youtube.com/results?hl=de&gl=DE&search_query=" + subStr);
-                } else {
-                    mWebView.loadUrl("https://www.youtube.com/results?search_query=" + subStr);
-                }
-            } else  if (text.startsWith(".d ")) {
-                if (Locale.getDefault().getLanguage().contentEquals("jae")){
-                    mWebView.loadUrl("https://duckduckgo.com/?q=" + subStr + "&kl=de-de&kad=de_DE&k1=-1&kaj=m&kam=osm&kp=-1&kak=-1&kd=1&t=h_&ia=web");
-                } else {
-                    mWebView.loadUrl("https://duckduckgo.com/?q=" + subStr);
-                }
-            } else {
-                if (searchEngine.contains("https://duckduckgo.com/?q=")) {
-                    if (Locale.getDefault().getLanguage().contentEquals("jae")){
-                        mWebView.loadUrl("https://duckduckgo.com/?q=" + text + "&kl=de-de&kad=de_DE&k1=-1&kaj=m&kam=osm&kp=-1&kak=-1&kd=1&t=h_&ia=web");
-                    } else {
-                        mWebView.loadUrl("https://duckduckgo.com/?q=" + text);
-                    }
-                } else if (searchEngine.contains("https://metager.de/meta/meta.ger3?focus=web&eingabe=")) {
-                    if (Locale.getDefault().getLanguage().contentEquals("jae")){
-                        mWebView.loadUrl("https://metager.de/meta/meta.ger3?focus=web&eingabe=" + text);
-                    } else {
-                        mWebView.loadUrl("https://metager.de/meta/meta.ger3?focus=web&eingabe=" + text +"&focus=web&encoding=utf8&lang=eng");
-                    }
-                } else if (searchEngine.contains("https://startpage.com/do/search?query=")) {
-                    if (Locale.getDefault().getLanguage().contentEquals("jae")){
-                        mWebView.loadUrl("https://startpage.com/do/search?query=" + text + "&lui=deutsch&l=deutsch");
-                    } else {
-                        mWebView.loadUrl("https://startpage.com/do/search?query=" + text);
-                    }
-                }else {
-                    mWebView.loadUrl(searchEngine + text);
-                }
-            }
+            mWebView.loadUrl(searchEngine + text);
         }
+
+
     }
 }

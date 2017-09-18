@@ -73,7 +73,7 @@ public class Activity_intent extends Activity {
                         new android.support.v4.app.NotificationCompat.Builder(Activity_intent.this)
                                 .setAutoCancel(true)
                                 .setSmallIcon(R.drawable.earth)
-                                .setGroup("Browser")
+                                .setGroup("KidsPortal")
                                 .setGroupSummary(true);
 
                 Notification notification = new NotificationCompat.Builder(Activity_intent.this)
@@ -82,7 +82,7 @@ public class Activity_intent extends Activity {
                         .setContentText(url)
                         .setContentIntent(piMain)
                         .setAutoCancel(true)
-                        .setGroup("Browser")
+                        .setGroup("KidsPortal")
                         .setStyle(new android.support.v4.app.NotificationCompat.BigTextStyle().bigText(data.toString()))
                         .setPriority(Notification.PRIORITY_MAX)
                         .setVibrate(new long[0])

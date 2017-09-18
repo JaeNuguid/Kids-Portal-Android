@@ -15,7 +15,7 @@
         android:icon="@drawable/account_card_details"
         android:summary="@string/action_form_summary"
         android:key="form"
-        android:defaultValue="false" />
+        android:defaultValue="true" />
 
     <CheckBoxPreference
         android:title="@string/action_java"
@@ -50,6 +50,6 @@
         android:icon="@drawable/desktop_mac"
         android:summary="@string/action_desktop_summary"
         android:key="request_bo"
-        android:defaultValue="false" />
+        android:defaultValue="true" />
 
 </PreferenceScreen>
