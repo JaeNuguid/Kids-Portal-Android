@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-# Kids Portal: A Child-safe Web Browser 
-=======
 # Kids Portal: A Child-safe Android Web Browser 
->>>>>>> fb45c472d09c36f3c540f8448e0fc8eb7dcc2109
-<center>
+
 <a href="https://www.linkedin.com/in/jaenuguid/">
   <img src="https://github.com/JaeNuguid/Kids-Portal-Version-2/blob/master/newKidsPortal/Resources/KidsPortal.png?raw=true" width="250" height="250"/>
 </a>
-</center>
-<<<<<<< HEAD
   
 ## What is it?
 Kids Portal is a lightweight web browser based on Chromium. It is not meant to replace full featured, robust desktop web browsers such as Google Chrome. Kids Portal functionality is intentionally limited to the protection of the user.
@@ -40,5 +34,4 @@ Whenever the user is surfing online, Kids Portal is running an algorithm that ex
 soon...
 
 
->>>>>>> fb45c472d09c36f3c540f8448e0fc8eb7dcc2109
 Jae Allen R. Nuguid - September 01, 2017
