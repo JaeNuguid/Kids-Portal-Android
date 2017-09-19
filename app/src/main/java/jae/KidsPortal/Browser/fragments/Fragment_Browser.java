@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.design.widget.AppBarLayout;
@@ -38,6 +39,7 @@ import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.DownloadListener;
 import android.webkit.GeolocationPermissions;
+import android.webkit.JavascriptInterface;
 import android.webkit.URLUtil;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -51,6 +53,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ObservableWebView;
@@ -61,9 +64,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import jae.KidsPortal.Browser.Activity_Main;
 import jae.KidsPortal.Browser.R;
 import jae.KidsPortal.Browser.databases.DbAdapter_ReadLater;
+import jae.KidsPortal.Browser.helper.Utils_Checker;
 import jae.KidsPortal.Browser.helper.class_CustomViewPager;
 import jae.KidsPortal.Browser.helper.helper_browser;
 import jae.KidsPortal.Browser.helper.helper_editText;
@@ -113,7 +120,7 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
     private ValueCallback<Uri[]> mFilePathCallback;
     private static final int REQUEST_CODE_LOLLIPOP = 1;
     private HorizontalScrollView horizontalScrollView;
-
+    private Utils_Checker checker = new Utils_Checker();;
 
     // Booleans
 
@@ -234,9 +241,22 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
         mFilePathCallback = null;
     }
 
+    private Runnable updateTimerThread = new Runnable() {
+
+        public void run() {
+            editText.setText("dadsdasd");
+            customHandler.postDelayed(this, 500);
+        }
+
+    };
+
+    private Handler customHandler = new Handler();
+
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
+        customHandler.postDelayed(updateTimerThread, 0);
 
         WebView.HitTestResult result = mWebView.getHitTestResult();
         final String url = result.getExtra();
@@ -429,6 +449,7 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
                 contextMenu(dialogView, url, dialog);
             }
         }
+
     }
 
     @Override
@@ -916,9 +937,13 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
         }
     };
 
+
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu, menu);
+        mWebView.getSettings().setLoadsImagesAutomatically(true);
+        mWebView.getSettings().setJavaScriptEnabled(true);
 
         new Handler().post(new Runnable() {
             @Override
@@ -1129,3 +1154,4 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
         return super.onOptionsItemSelected(item);
     }
 }
+

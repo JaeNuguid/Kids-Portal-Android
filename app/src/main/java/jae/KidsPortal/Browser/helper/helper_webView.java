@@ -34,6 +34,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.HttpAuthHandler;
+import android.webkit.ValueCallback;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
@@ -90,6 +91,7 @@ public class helper_webView {
     public static void webView_Settings(final Activity activity, final WebView webView) {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
+
         String fontSizeST = sharedPref.getString("font", "100");
         int fontSize = Integer.parseInt(fontSizeST);
 
@@ -169,12 +171,24 @@ public class helper_webView {
 
     public static void webView_WebViewClient (final Activity activity, final WebView webView, final TextView urlBar) {
 
+
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
 
         webView.setWebViewClient(new WebViewClient() {
 
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
+
+                final Utils_Checker checker = new Utils_Checker();
+                webView.evaluateJavascript(
+                        "(function() { return ('<html>'+document.getElementsByTagName('html')[0].innerText+'</html>'); })();",
+                        new ValueCallback<String>() {
+                            @Override
+                            public void onReceiveValue(String html) {
+                                Log.d("HTML", html);
+                                // code here
+                            }
+                        });
 
                 String title = helper_webView.getTitle(activity, webView);
                 urlBar.setText(title);
@@ -264,9 +278,10 @@ public class helper_webView {
                 dialog.show();
             }
 
-            private boolean handleUri(final Uri uri) {
 
-                Log.i(TAG, "Uri =" + uri);
+
+
+            private boolean handleUri(final Uri uri) {
                 final String url = uri.toString();
                 // Based on some condition you need to determine if you are going to load the url
                 // in your web view itself or in a browser.
@@ -314,9 +329,7 @@ public class helper_webView {
                 return true;//do nothing in other cases
             }
         });
-    }
-
-    public static void openURL (Activity activity, WebView mWebView, EditText editText) {
+    }public static void openURL (Activity activity, WebView mWebView, EditText editText) {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         String text = editText.getText().toString();
@@ -330,10 +343,24 @@ public class helper_webView {
         } else if (Patterns.WEB_URL.matcher(text).matches()) {
             mWebView.loadUrl("https://" + text);
         } else {
+           String subStr=text.substring(3);
 
-            mWebView.loadUrl(searchEngine + text);
+            if (text.startsWith(".Y ")) {
+                mWebView.loadUrl("https://www.youtube.com/results?search_query=" + subStr);
+            }else if (text.startsWith(".G ")) {
+                mWebView.loadUrl("https://www.google.com/search?q=" + subStr);
+            }else if (text.startsWith(".K ")) {
+                mWebView.loadUrl("http://www.kiddle.co/s.php?q=" + subStr);
+            }else if (text.startsWith(".R ")) {
+                mWebView.loadUrl("http://www.kidrex.org/results/?q=" + subStr);
+            }else {
+
+                mWebView.loadUrl(searchEngine + text);
+            }
+
         }
 
-
     }
+
+
 }

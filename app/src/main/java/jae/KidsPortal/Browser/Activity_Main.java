@@ -19,7 +19,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import jae.KidsPortal.Browser.helper.Utils_Checker;
 import jae.KidsPortal.Browser.helper.class_CustomViewPager;
 import jae.KidsPortal.Browser.helper.helper_browser;
 import jae.KidsPortal.Browser.helper.helper_editText;
@@ -32,7 +35,7 @@ import jae.KidsPortal.Browser.fragments.Fragment_Pass;
 import jae.KidsPortal.Browser.fragments.Fragment_ReadLater;
 import jae.KidsPortal.Browser.helper.helper_toolbar;
 
-public class Activity_Main extends AppCompatActivity {
+public class Activity_Main extends AppCompatActivity{
 
 
     // Views
@@ -43,15 +46,16 @@ public class Activity_Main extends AppCompatActivity {
     private EditText editText;
     private Toolbar toolbar;
 
-
     // Others
-
     private SharedPreferences sharedPref;
+
+
 
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         final Activity activity = Activity_Main.this;
@@ -133,6 +137,8 @@ public class Activity_Main extends AppCompatActivity {
                     Fragment_Files fragment = (Fragment_Files) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
                     fragment.fragmentAction();
                 }
+
+
             }
 
             @Override
@@ -145,6 +151,8 @@ public class Activity_Main extends AppCompatActivity {
         setupViewPager(viewPager);
         helper_toolbar.toolbarGestures(activity, toolbar, viewPager);
         onNewIntent(getIntent());
+
+
     }
 
     @Override

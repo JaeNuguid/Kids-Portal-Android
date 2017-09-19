@@ -61,6 +61,8 @@ public class helper_browser {
 
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
 
+
+
         editText.setHint(R.string.app_search_hint);
         editText.clearFocus();
 
@@ -119,6 +121,10 @@ public class helper_browser {
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
 
         sharedPref.edit().putString("started", "yes").apply();
+        sharedPref.edit().putString("pictures_string", activity.getString(R.string.app_yes)).apply();
+        sharedPref.edit().putString("java_string", activity.getString(R.string.app_yes)).apply();
+
+        mWebView.reload();
 
         final String whiteList = sharedPref.getString("whiteList", "");
         final String domain = helper_webView.getDomain(activity, mWebView.getUrl());
@@ -213,7 +219,8 @@ public class helper_browser {
                 if(isChecked){
                     sharedPref.edit().putString("pictures_string", activity.getString(R.string.app_yes)).apply();
                     mWebView.getSettings().setLoadsImagesAutomatically(true);
-                }else{
+                }
+                    else{
                     sharedPref.edit().putString("pictures_string", activity.getString(R.string.app_no)).apply();
                     mWebView.getSettings().setLoadsImagesAutomatically(false);
                 }
