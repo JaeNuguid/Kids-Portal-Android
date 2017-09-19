@@ -132,25 +132,15 @@ public class helper_browser {
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(activity);
         View dialogView = View.inflate(activity, R.layout.dialog_toggle, null);
 
-        Switch sw_java = (Switch) dialogView.findViewById(R.id.switch1);
         Switch sw_pictures = (Switch) dialogView.findViewById(R.id.switch2);
         Switch sw_location = (Switch) dialogView.findViewById(R.id.switch3);
         Switch sw_cookies = (Switch) dialogView.findViewById(R.id.switch4);
         Switch sw_blockads = (Switch) dialogView.findViewById(R.id.switch5);
         Switch sw_requestDesk = (Switch) dialogView.findViewById(R.id.switch6);
         Switch sw_swipe = (Switch) dialogView.findViewById(R.id.switch7);
-        final ImageButton whiteList_js = (ImageButton) dialogView.findViewById(R.id.imageButton_js);
 
-        if (whiteList.contains(domain)) {
-            whiteList_js.setImageResource(R.drawable.check_green);
-        } else {
-            whiteList_js.setImageResource(R.drawable.close_red);
-        }
-        if (sharedPref.getString("java_string", "True").equals(activity.getString(R.string.app_yes))){
-            sw_java.setChecked(true);
-        } else {
-            sw_java.setChecked(false);
-        }
+
+
         if (sharedPref.getString("pictures_string", "True").equals(activity.getString(R.string.app_yes))){
             sw_pictures.setChecked(true);
         } else {
@@ -182,35 +172,6 @@ public class helper_browser {
             sw_swipe.setChecked(false);
         }
 
-        whiteList_js.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (whiteList.contains(domain)) {
-                    whiteList_js.setImageResource(R.drawable.close_red);
-                    String removed = whiteList.replaceAll(domain, "");
-                    sharedPref.edit().putString("whiteList", removed).apply();
-                } else {
-                    whiteList_js.setImageResource(R.drawable.check_green);
-                    sharedPref.edit().putString("whiteList", whiteList + " " + domain).apply();
-                }
-            }
-        });
-        sw_java.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            @SuppressLint("SetJavaScriptEnabled")
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,
-                                         boolean isChecked) {
-                if(isChecked){
-                    sharedPref.edit().putString("java_string", activity.getString(R.string.app_yes)).apply();
-                    mWebView.getSettings().setJavaScriptEnabled(true);
-                }else{
-                    sharedPref.edit().putString("java_string", activity.getString(R.string.app_no)).apply();
-                    mWebView.getSettings().setJavaScriptEnabled(false);
-                }
-
-            }
-        });
         sw_pictures.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override

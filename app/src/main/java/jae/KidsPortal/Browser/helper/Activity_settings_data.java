@@ -327,55 +327,6 @@ public class Activity_settings_data extends AppCompatActivity {
             });
         }
 
-        private void addProtectListener() {
-
-            Preference reset = findPreference("protect_PW");
-            reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                public boolean onPreferenceClick(Preference pref) {
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    View dialogView = View.inflate(getActivity(), R.layout.dialog_pin, null);
-
-                    final EditText pass_userPW = (EditText) dialogView.findViewById(R.id.pass_userPin);
-
-                    try {
-                        toDecode = mahEncryptor.decode(sharedPref.getString("protect_PW", ""));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    pass_userPW.setText(toDecode);
-
-                    builder.setView(dialogView);
-                    builder.setTitle(R.string.action_protect);
-                    builder.setPositiveButton(R.string.toast_yes, new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface dialog, int whichButton) {
-
-                            try {
-                                String toEncode = mahEncryptor.encode(pass_userPW.getText().toString().trim());
-                                sharedPref.edit().putString("protect_PW", toEncode).apply();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                    builder.setNegativeButton(R.string.toast_cancel, new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            dialog.cancel();
-                        }
-                    });
-
-                    final AlertDialog dialog2 = builder.create();
-                    // Display the custom alert dialog on interface
-                    dialog2.show();
-                    helper_editText.showKeyboard(getActivity(), pass_userPW, 0, toDecode, getActivity().getString(R.string.pw_hint));
-
-                    return true;
-                }
-            });
-        }
-
         private void addWhiteListListener() {
 
             Preference reset = findPreference("whiteList");
@@ -420,7 +371,6 @@ public class Activity_settings_data extends AppCompatActivity {
 
             addPreferencesFromResource(R.xml.user_settings_data);
             addBackup_dbListener();
-            addProtectListener();
             addWhiteListListener();
         }
 
@@ -430,7 +380,7 @@ public class Activity_settings_data extends AppCompatActivity {
                 File data = Environment.getDataDirectory();
 
                 if (sd.canWrite()) {
-                    String currentDBPath = "//data//" + "de.baumann.browser"
+                    String currentDBPath = "//data//" + "jae.KidsPortal.Browser"
                             + "//databases//" + "bookmarks_DB_v01.db";
                     String backupDBPath = "//Android//" + "//data//" + "//browser.backup//" + "bookmarks_DB_v01.db";
                     File currentDB = new File(data, currentDBPath);
@@ -455,7 +405,7 @@ public class Activity_settings_data extends AppCompatActivity {
                 File data = Environment.getDataDirectory();
 
                 if (sd.canWrite()) {
-                    String currentDBPath3 = "//data//" + "de.baumann.browser"
+                    String currentDBPath3 = "//data//" + "jae.KidsPortal.Browser"
                             + "//databases//" + "readLater_DB_v01.db";
                     String backupDBPath3 = "//Android//" + "//data//" + "//browser.backup//" + "readLater_DB_v01.db";
                     File currentDB3 = new File(data, currentDBPath3);
@@ -480,7 +430,7 @@ public class Activity_settings_data extends AppCompatActivity {
                 File data = Environment.getDataDirectory();
 
                 if (sd.canWrite()) {
-                    String currentDBPath = "//data//" + "de.baumann.browser"
+                    String currentDBPath = "//data//" + "jae.KidsPortal.Browser"
                             + "//databases//" + "history_DB_v01.db";
                     String backupDBPath = "//Android//" + "//data//" + "//browser.backup//" + "history_DB_v01.db";
                     File currentDB = new File(data, currentDBPath);
@@ -522,7 +472,7 @@ public class Activity_settings_data extends AppCompatActivity {
                 File data = Environment.getDataDirectory();
 
                 if (sd.canWrite()) {
-                    String currentDBPath = "//data//" + "de.baumann.browser"
+                    String currentDBPath = "//data//" + "jae.KidsPortal.Browser"
                             + "//databases//" + "bookmarks_DB_v01.db";
                     String backupDBPath = "//Android//" + "//data//" + "//browser.backup//" + "bookmarks_DB_v01.db";
                     File currentDB = new File(data, currentDBPath);
@@ -547,7 +497,7 @@ public class Activity_settings_data extends AppCompatActivity {
                 File data = Environment.getDataDirectory();
 
                 if (sd.canWrite()) {
-                    String currentDBPath = "//data//" + "de.baumann.browser"
+                    String currentDBPath = "//data//" + "jae.KidsPortal.Browser"
                             + "//databases//" + "readLater_DB_v01.db";
                     String backupDBPath = "//Android//" + "//data//" + "//browser.backup//" + "readLater_DB_v01.db";
                     File currentDB = new File(data, currentDBPath);
@@ -572,7 +522,7 @@ public class Activity_settings_data extends AppCompatActivity {
                 File data = Environment.getDataDirectory();
 
                 if (sd.canWrite()) {
-                    String currentDBPath = "//data//" + "de.baumann.browser"
+                    String currentDBPath = "//data//" + "jae.KidsPortal.Browser"
                             + "//databases//" + "history_DB_v01.db";
                     String backupDBPath = "//Android//" + "//data//" + "//browser.backup//" + "history_DB_v01.db";
                     File currentDB = new File(data, currentDBPath);

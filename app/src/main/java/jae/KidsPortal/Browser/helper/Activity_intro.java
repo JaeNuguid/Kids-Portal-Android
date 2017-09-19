@@ -1,5 +1,6 @@
 package jae.KidsPortal.Browser.helper;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -10,6 +11,7 @@ import com.chyrta.onboarder.OnboarderPage;
 import java.util.ArrayList;
 import java.util.List;
 
+import jae.KidsPortal.Browser.ParentAuth;
 import jae.KidsPortal.Browser.R;
 
 
@@ -71,6 +73,8 @@ public class Activity_intro extends OnboarderActivity {
         PreferenceManager.setDefaultValues(this, R.xml.user_settings, false);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPref.edit().putBoolean("introShowDo_notShow", false).apply();
+        Intent intent = new Intent(this, ParentAuth.class);
+        startActivity(intent);
         finish();
     }
 }

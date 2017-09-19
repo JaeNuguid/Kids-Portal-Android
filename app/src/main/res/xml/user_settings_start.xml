@@ -17,12 +17,6 @@
         android:key="form"
         android:defaultValue="true" />
 
-    <CheckBoxPreference
-        android:title="@string/action_java"
-        android:icon="@drawable/language_javascript"
-        android:summary="@string/action_java_summary"
-        android:key="java"
-        android:defaultValue="true" />
 
     <CheckBoxPreference
         android:title="@string/action_loc"

@@ -33,7 +33,7 @@
         startpage by clicking the star. You can also set an empty page as startpage (Menu -> Empty page).&lt;br>&lt;br>
         &lt;i>readLater:&lt;/i> here you can save websites if you want to read them anytime later, if they are not
         important enough to be a bookmark.&lt;br>&lt;br>
-        &lt;i>History:&lt;/i> well, your browser history.&lt;br>&lt;br>
+        &lt;i>History:&lt;/i> your browser history.&lt;br>&lt;br>
         &lt;i>passStorage:&lt;/i> here you can save (encrypted) login data from websites. If you want to delete entered
         login data on exit, you must enable \"clear cookies on exit\" in the settings.</string>
 
@@ -60,10 +60,6 @@
         &lt;i>Search on site:&lt;/i> search for text on any website.&lt;br>&lt;br>
         &lt;i>Open passStorage:&lt;/i> open your login data list.&lt;br>&lt;br>
         &lt;i>Open download directory:&lt;/i> opens the download directory to show, share, rename or delete files.&lt;br>&lt;br>
-        &lt;i>Settings (popup dialog):&lt;/i> Here you can overwrite the default settings for a short time. These settings
-        will get lost at the next app start. By clicking the red cross you can also add websites to a whitelist for javascript.
-        They will be marked with a \"green check icon\". Javascript will then always be allowed for these websites (even after
-        restarting the app). To open the main settings screen, click on \"Settings\" at the bottom of the popup dialog.&lt;br>&lt;br>
         &lt;i>Settings:&lt;/i> In the settings you can configure the behavior of the app, some privacy and
         security settings. At the app start these settings will always be loaded.</string>
 

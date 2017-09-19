@@ -97,7 +97,6 @@
     <string name="context_tab">Empty tab</string>
 
 
-
     // Snackbar
 
     <string name="toast_yes">OK</string>
@@ -194,10 +193,6 @@
 
     <string name="action_restore">Restore</string>
 
-    <string name="action_java">Javascript</string>
-    <string name="action_java_summary">Some functions on the websites need javascript to work. But javascript is
-        known to be a security risk.</string>
-
     <string name="action_cookie">Cookies</string>
     <string name="action_cookie_summary">Visited websites are storing their cookies on your device, mostly to improve user
         experience. For example settings for a search site are stored in cookies. Third party cookies are not from the visited
@@ -234,10 +229,6 @@
     <string name="action_searchChoose">Websites</string>
     <string name="action_searchChoose_summary">Choose which websites are enabled for the fast search.</string>
     <string name="action_searchChooseTitle">Choose a site to search</string>
-
-    <string name="action_protect">App protection</string>
-    <string name="action_protect_summary">Set a pin to protect app against unwanted access. Only use numbers. Let empty, if you do
-        not want to protect the app.</string>
 
     <string name="action_rotation">Rotation</string>
     <string name="action_rotation_summary">Set the rotation mode of the app: auto, portrait or landscape.</string>
@@ -293,7 +284,7 @@
     the main settings, just click the \"Settings\" button.</string>
 
     <string name="intro5_title">Parent Control</string>
-    <string name="intro5_text">Enter \"//setting\" in the Navigation Bar to access Parent Control Panel.</string>
+    <string name="intro5_text">Once you are successfully registered as a parent-admin, enter \"//setting\" in the Navigation Bar to access the Parent Control Panel.</string>
 
 
     // About
@@ -309,8 +300,8 @@
     <string name="about_license">License</string>
     <string name="about_license_summary">The app is licensed under GPL and completely open source and free (as in freedom).</string>
 
-    <string name="about_dev">Jae Allen Nuguid - Mashed Tomatoes</string>
-    <string name="about_dev_summary">The co-developers are Benisano Mark Lawrence and Calvin Joseph Martin.</string>
+    <string name="about_dev">Jae Allen Nuguid</string>
+    <string name="about_dev_summary">Co-developers are Benisano Mark Lawrence and Calvin Joseph Martin.</string>
 
     <string name="about_license_2">Used to hide the toolbar while scrolling.</string>
     <string name="about_license_3">Used to build the intro screen.</string>
@@ -328,10 +319,18 @@
     <string name="choose_menu_4">Delete</string>
 
 
-    // Password
 
-    <string name="pw_forgotten">Pin forgotten?</string>
-    <string name="pw_hint">Enter pin</string>
-    <string name="pw_forgotten_dialog">Delete all data to reset your app pin?</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
 
 </resources>

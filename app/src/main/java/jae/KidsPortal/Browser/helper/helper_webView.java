@@ -42,15 +42,18 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.net.URISyntaxException;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
+import jae.KidsPortal.Browser.Login;
+import jae.KidsPortal.Browser.ParentAuth;
 import jae.KidsPortal.Browser.R;
 import jae.KidsPortal.Browser.databases.DbAdapter_History;
 import jae.KidsPortal.Browser.utils.Utils_AdBlocker;
+import jae.KidsPortal.Browser.utils.Utils_Checker;
 import jae.KidsPortal.Browser.utils.Utils_UserAgent;
 
 import static android.content.ContentValues.TAG;
@@ -85,6 +88,7 @@ public class helper_webView {
         }
         return domain ;
     }
+
 
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -126,15 +130,6 @@ public class helper_webView {
             sharedPref.edit().putString("cookie_string", activity.getString(R.string.app_no)).apply();
         }
 
-        if (sharedPref.getBoolean ("java", false)){
-            webView.getSettings().setJavaScriptEnabled(true);
-            sharedPref.edit().putString("java_string", activity.getString(R.string.app_yes)).apply();
-        } else {
-            webView.getSettings().setJavaScriptEnabled(false);
-            sharedPref.edit().putString("java_string", activity.getString(R.string.app_no)).apply();
-        }
-
-
         if (sharedPref.getBoolean ("pictures", false)){
             webView.getSettings().setLoadsImagesAutomatically(true);
             sharedPref.edit().putString("pictures_string", activity.getString(R.string.app_yes)).apply();
@@ -168,9 +163,11 @@ public class helper_webView {
             myUserAgent.setUserAgent(activity, webView, false, webView.getUrl());
         }
     }
+        Utils_Checker checker = new Utils_Checker();
+
 
     public static void webView_WebViewClient (final Activity activity, final WebView webView, final TextView urlBar) {
-
+        Utils_Checker.init(activity);
 
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
 
@@ -185,8 +182,49 @@ public class helper_webView {
                         new ValueCallback<String>() {
                             @Override
                             public void onReceiveValue(String html) {
-                                Log.d("HTML", html);
+                               String newY = html.trim().replaceAll(" +", " ");;
+                               String newX = newY.replaceAll("[^A-Za-z]", " ");
+                              String[] newZ = newX.split(" ");
+
+                                boolean stop = false;
+
+                                for(String zx : newZ){
+
+                                    if(stop) {
+                                     stop = true;
+                                     break;
+                                    }
+                                    if(zx.length() >2 ){
+                                        for(String jae : checker.getXwords()){
+
+                                            //if(checker.patternCheck(zx.toLowerCase(),jae.toLowerCase())){
+                                            //    webView.loadUrl("http://www.kidrex.org");
+                                            //    Log.d("", zx +"  >>>  "+jae);
+                                            //   Toast.makeText(activity, "PAGE BLOCKED - It contains inappropriate content!",
+                                            //            Toast.LENGTH_LONG).show();
+                                            //    stop = true;
+                                            //    break;
+                                            //}
+                                            if(zx.toLowerCase().equals(jae.toLowerCase())){
+                                                webView.loadUrl("http://www.kidrex.org");
+                                                Log.d("", zx +"  >>>  "+jae);
+                                                Toast.makeText(activity, "PAGE BLOCKED - It contains inappropriate content!",
+                                                        Toast.LENGTH_LONG).show();
+                                                stop = true;
+                                                break;
+                                            }
+                                    }
+                                }
+
+
                                 // code here
+                            //    for(String jae : checker.getXwords()){
+
+                                //  if(html.toLowerCase().contains(jae.toLowerCase())){
+                                    //  Log.d("","BAD WORD!! >> " + jae);
+                              //    }
+                            }
+
                             }
                         });
 
@@ -336,7 +374,10 @@ public class helper_webView {
         String searchEngine = sharedPref.getString("searchEngine", "http://www.kidrex.org/results/?q=");
         String wikiLang = sharedPref.getString("wikiLang", "en");
 
-        if (text.startsWith("http")) {
+        if(text.contains("//setting")){
+            Intent intent = new Intent(activity, Login.class);
+            activity.startActivity(intent);
+        } else if(text.startsWith("http")) {
             mWebView.loadUrl(text);
         } else if (text.startsWith("www.")) {
             mWebView.loadUrl("https://" + text);

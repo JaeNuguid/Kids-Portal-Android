@@ -19,10 +19,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import jae.KidsPortal.Browser.helper.Utils_Checker;
 import jae.KidsPortal.Browser.helper.class_CustomViewPager;
 import jae.KidsPortal.Browser.helper.helper_browser;
 import jae.KidsPortal.Browser.helper.helper_editText;
@@ -68,12 +65,9 @@ public class Activity_Main extends AppCompatActivity{
         sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         sharedPref.edit().putBoolean("isOpened", true).apply();
 
-        helper_main.checkPin(activity);
         helper_main.onStart(activity);
         helper_main.grantPermissionsStorage(activity);
         helper_browser.resetTabs(activity);
-
-
 
 
 

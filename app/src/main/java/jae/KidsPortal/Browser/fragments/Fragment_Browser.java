@@ -20,7 +20,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.design.widget.AppBarLayout;
@@ -39,7 +38,6 @@ import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.DownloadListener;
 import android.webkit.GeolocationPermissions;
-import android.webkit.JavascriptInterface;
 import android.webkit.URLUtil;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -53,7 +51,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ObservableWebView;
@@ -64,14 +61,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import jae.KidsPortal.Browser.Activity_Main;
 import jae.KidsPortal.Browser.R;
 import jae.KidsPortal.Browser.databases.DbAdapter_ReadLater;
-import jae.KidsPortal.Browser.helper.Utils_Checker;
 import jae.KidsPortal.Browser.helper.class_CustomViewPager;
+import jae.KidsPortal.Browser.helper.helper_browser;
 import jae.KidsPortal.Browser.helper.helper_browser;
 import jae.KidsPortal.Browser.helper.helper_editText;
 import jae.KidsPortal.Browser.helper.helper_main;
@@ -120,7 +114,6 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
     private ValueCallback<Uri[]> mFilePathCallback;
     private static final int REQUEST_CODE_LOLLIPOP = 1;
     private HorizontalScrollView horizontalScrollView;
-    private Utils_Checker checker = new Utils_Checker();;
 
     // Booleans
 
@@ -244,8 +237,7 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
     private Runnable updateTimerThread = new Runnable() {
 
         public void run() {
-            editText.setText("dadsdasd");
-            customHandler.postDelayed(this, 500);
+          customHandler.postDelayed(this, 500);
         }
 
     };
@@ -521,30 +513,6 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
             progressBar.setProgress(progress);
             progressBar.setVisibility(progress == 100 ? View.GONE : View.VISIBLE);
 
-            try {
-                String whiteList = sharedPref.getString("whiteList", "");
-
-                if (whiteList.contains(helper_webView.getDomain(activity, mWebView.getUrl()))) {
-                    mWebView.getSettings().setJavaScriptEnabled(true);
-                } else {
-                    if (sharedPref.getString("started", "").equals("yes")) {
-                        if (sharedPref.getString("java_string", "True").equals(activity.getString(R.string.app_yes))){
-                            mWebView.getSettings().setJavaScriptEnabled(true);
-                        } else {
-                            mWebView.getSettings().setJavaScriptEnabled(false);
-                        }
-                    } else {
-                        if (sharedPref.getBoolean ("java", false)){
-                            mWebView.getSettings().setJavaScriptEnabled(true);
-                        } else {
-                            mWebView.getSettings().setJavaScriptEnabled(false);
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                // Error occurred while creating the File
-                Log.e(TAG, "Browser Error", e);
-            }
 
             if (progress < 10) {
                 if (scrollTabs.getVisibility() == View.VISIBLE) {

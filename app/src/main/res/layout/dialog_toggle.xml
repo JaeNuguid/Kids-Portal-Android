@@ -20,42 +20,6 @@
             android:layout_marginTop="16dp">
 
             <TextView
-                android:text="@string/action_java"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_toStartOf="@+id/imageButton_js" />
-
-            <Switch
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/switch1"
-                android:checked="true" />
-
-            <ImageButton
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                app:srcCompat="@drawable/close_red"
-                android:layout_toStartOf="@+id/switch1"
-                android:id="@+id/imageButton_js"
-                android:background="?android:selectableItemBackground"
-                tools:ignore="ContentDescription"
-                android:layout_centerVertical="true"
-                android:layout_centerInParent="true"
-                android:layout_centerHorizontal="true"
-                android:scaleType="centerCrop" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-
-            <TextView
                 android:text="@string/action_loc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
