@@ -141,7 +141,7 @@ public class helper_editText {
 
     public static void hideKeyboard(Activity activity, EditText editText, int i, String text, String hint) {
         editText.clearFocus();
-        editText.setText(text);
+        editText.setText("Search Here...");
         editText.setHint(hint);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         sharedPref.edit().putInt("keyboard", i).apply();
@@ -153,7 +153,7 @@ public class helper_editText {
     public static void showKeyboard(final Activity activity, final EditText editText, final int i, String text, String hint) {
         editText.requestFocus();
         editText.hasFocus();
-        editText.setText(text);
+        editText.setText("Enter search or web address...");
         editText.setHint(hint);
         editText.setSelection(editText.length());
         new Handler().postDelayed(new Runnable() {

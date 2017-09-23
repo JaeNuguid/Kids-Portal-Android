@@ -82,29 +82,15 @@ class About_content {
 
 
 
-        MaterialAboutCard.Builder convenienceCardBuilder = new MaterialAboutCard.Builder();
+            MaterialAboutCard.Builder convenienceCardBuilder = new MaterialAboutCard.Builder();
         convenienceCardBuilder.title(R.string.about_title_libs);
 
-
-        convenienceCardBuilder.addItem(new MaterialAboutActionItem.Builder()
-                .text("Android Observable ScrollView")
-                .subText(R.string.about_license_2)
-                .icon(R.drawable.github_circle)
-                .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Android Observable ScrollView", "https://github.com/ksoichiro/Android-ObservableScrollView", true, false))
-                .build());
 
         convenienceCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Android Onboarder")
                 .subText(R.string.about_license_3)
                 .icon(R.drawable.github_circle)
                 .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Android Onboarder", "https://github.com/chyrta/AndroidOnboarder", true, false))
-                .build());
-
-        convenienceCardBuilder.addItem(new MaterialAboutActionItem.Builder()
-                .text("CGSLURP LLC")
-                .subText(R.string.about_license_2)
-                .icon(R.drawable.github_circle)
-                .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "CGSLURP LLC", "https://github.com/futrDevelopment", true, false))
                 .build());
 
 

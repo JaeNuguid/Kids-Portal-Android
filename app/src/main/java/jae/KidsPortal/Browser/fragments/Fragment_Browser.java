@@ -51,6 +51,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ObservableWebView;
@@ -72,6 +73,7 @@ import jae.KidsPortal.Browser.helper.helper_main;
 import jae.KidsPortal.Browser.helper.helper_toolbar;
 import jae.KidsPortal.Browser.helper.helper_webView;
 import jae.KidsPortal.Browser.utils.Utils_AdBlocker;
+import jae.KidsPortal.Browser.utils.Utils_Checker;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
 
@@ -468,7 +470,7 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
 
         } else if (scrollState == ScrollState.DOWN) {
 
-            urlBar.setText(mWebView.getTitle());
+            urlBar.setText("Enter search or web address...");
             helper_browser.setNavArrows(mWebView, imageButton_left, imageButton_right);
             imageButton_up.setVisibility(View.GONE);
             imageButton_down.setVisibility(View.GONE);
@@ -508,6 +510,54 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
 
         @SuppressLint("SetJavaScriptEnabled")
         public void onProgressChanged(WebView view, int progress) {
+
+            final Utils_Checker checker = new Utils_Checker();
+            final WebView vview = view;
+            view.evaluateJavascript(
+                    "(function() { return ('<html>'+document.getElementsByTagName('html')[0].innerText+'</html>'); })();",
+                    new ValueCallback<String>() {
+                        @Override
+                        public void onReceiveValue(String html) {
+                            String newY = html.trim().replaceAll(" +", " ");;
+                            String newX = newY.replaceAll("[^A-Za-z]", " ");
+                            String[] newZ = newX.split(" ");
+
+                            boolean stop = false;
+
+                            for(String zx : newZ){
+
+                                if(stop) {
+                                    stop = true;
+                                    break;
+                                }
+                                if(zx.length() >2 ){
+                                    for(String jae : checker.getXwords()){
+
+                                        //if(checker.patternCheck(zx.toLowerCase(),jae.toLowerCase())){
+                                        //    webView.loadUrl("http://www.kidrex.org");
+                                        //    Log.d("", zx +"  >>>  "+jae);
+                                        //   Toast.makeText(activity, "PAGE BLOCKED - It contains inappropriate content!",
+                                        //            Toast.LENGTH_LONG).show();
+                                        //    stop = true;
+                                        //    break;
+                                        //}
+                                        if(zx.toLowerCase().equals(jae.toLowerCase())){
+                                            vview.goBack();
+                                       //    vview.loadUrl("http://www.kidrex.org");
+                                            Log.d("", zx +"  >>>  "+jae);
+                                            Toast.makeText(activity, "PAGE BLOCKED - It contains inappropriate content!",
+                                                    Toast.LENGTH_LONG).show();
+                                            stop = true;
+                                            break;
+                                        }
+                                    }
+                                }
+
+
+                            }
+
+                        }
+                    });
 
             sharedPref.edit().putString("tab_" + tab_number, helper_webView.getTitle(activity, mWebView)).apply();
             progressBar.setProgress(progress);
@@ -792,9 +842,7 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
         sharedPref.edit().putString("webView_url", mWebView.getUrl()).apply();
 
         if (title.isEmpty()) {
-            urlBar.setText(getString(R.string.app_name));
-        } else {
-            urlBar.setText(title);
+            urlBar.setText("Enter search or web address...");
         }
     }
 

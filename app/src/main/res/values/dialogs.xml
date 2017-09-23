@@ -43,7 +43,7 @@
         list. Swipe to top to close the app. This works everywhere.&lt;br>&lt;br>
         &lt;i>Click (only in the browser):&lt;/i> you can enter a search term (see below) or a url. By pressing \"enter\" or
         the magnifier icon, the website will load.&lt;br>&lt;br>
-        &lt;i>Long click (only in the browser):&lt;/i> opens the tab preview (see below).&lt;br>&lt;br>
+        &lt;i>Long press(only in the browser):&lt;/i> opens the tab preview (see below).&lt;br>&lt;br>
         &lt;i>History (only in the browser):&lt;/i> opens a list of the last visited websites. Long pressing reloads the website.</string>
 
     <string name="help_tabs_title">&lt;b>Tab (preview):&lt;/b></string>

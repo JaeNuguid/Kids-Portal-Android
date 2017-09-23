@@ -173,6 +173,7 @@ public class helper_webView {
 
         webView.setWebViewClient(new WebViewClient() {
 
+
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 
@@ -217,19 +218,13 @@ public class helper_webView {
                                 }
 
 
-                                // code here
-                            //    for(String jae : checker.getXwords()){
-
-                                //  if(html.toLowerCase().contains(jae.toLowerCase())){
-                                    //  Log.d("","BAD WORD!! >> " + jae);
-                              //    }
                             }
 
                             }
                         });
 
                 String title = helper_webView.getTitle(activity, webView);
-                urlBar.setText(title);
+                urlBar.setText("Enter search or web address...");
                 sharedPref.edit().putString("openURL", "").apply();
                 sharedPref.edit().putString("webView_url", webView.getUrl()).apply();
 

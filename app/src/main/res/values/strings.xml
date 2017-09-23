@@ -18,6 +18,7 @@
         &lt;i>Grant permissions later:&lt;/i>&lt;br>
         If you don\'t permit this now, you can do it later. Please open then \"Settings -> App info\" and choose \"Permissions\".</string>
 
+    <string name="searchText">Enter search or web address...</string>
     <string name="app_share_screenshot">Share screenshot using:</string>
     <string name="app_share_image">Share image using:</string>
     <string name="app_share_link">Share link using:</string>
@@ -58,7 +59,7 @@
     <string name="menu_share_link">Share link as text</string>
     <string name="menu_share_link_copy">Share link to Clipboard</string>
     <string name="menu_downloads">Open download folder</string>
-    <string name="menu_settings">Settings</string>
+    <string name="menu_settings">Advanced Settings</string>
     <string name="menu_searchSite">Search on site</string>
     <string name="menu_prev">Previous</string>
     <string name="menu_next">Next</string>
@@ -270,18 +271,17 @@
 
     <string name="intro1_title">Kids Portal</string>
     <string name="intro1_text">Thank you for choosing \"Kids Portal\". It\'s fully open source and still in development.
-        Here\'s a short intro to tell you about it.</string>
+        Here\'s some tips on how to use it. </string>
 
-    <string name="intro2_title">User Interface</string>
-    <string name="intro2_text">\"Kids Portal\" is organized in lists such as for bookmarks, readLater, passStorage and the history.</string>
+    <string name="intro2_title">Navigation Bar</string>
+    <string name="intro2_text">You can enter a web address or search term in the navigation bar. Then press the right arrow to proceed</string>
 
-    <string name="intro3_title">Navigation Bar</string>
-    <string name="intro3_text">Swipe left to open bookmarks, right to open readLater and up to close the app. Long click the toolbar
+    <string name="intro3_title">Bookmarks and ReadLater</string>
+    <string name="intro3_text">Swipe left to open bookmarks, right to open readLater and up to close the app. Press and hold the toolbar
     to switch between the tabs.</string>
 
     <string name="intro4_title">Settings</string>
-    <string name="intro4_text">In the settings popup you can configure the behavior of \"Kids Portal\" for the current session. To open
-    the main settings, just click the \"Settings\" button.</string>
+    <string name="intro4_text">Press the dotted icon on the bottom right to access the Settings menu. From there, you can change some current session settings and the advanced ones.</string>
 
     <string name="intro5_title">Parent Control</string>
     <string name="intro5_text">Once you are successfully registered as a parent-admin, enter \"//setting\" in the Navigation Bar to access the Parent Control Panel.</string>
