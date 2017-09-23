@@ -5,7 +5,7 @@
 </a>
   
 ## What is it?
-Kids Portal is a lightweight web browser based on Chromium. It is not meant to replace full featured, robust desktop web browsers such as Google Chrome. Kids Portal functionality is intentionally limited to the protection of the user.
+Kids Portal is a lightweight web browser. It is not meant to replace full featured, robust mobile web browsers such as Google Chrome. Kids Portal functionality is intentionally limited to the protection of the user.
 Kids Portal is a child-safe web browser, where it aims to help parents to worry less for the safety of their children while surfing the internet. It is an easy-to-use and lightweight internet browser software. Kids Portal is an extra layer of protection to keep your kids safe and prevent them from being exposed to any inappropriate or explicit adult material on the internet. Kids Portal's protection is what separates it from any existing similar software. This software supports English and Tagalog language for protection, although you can add different languages as well.
 
 ## What does it do?
