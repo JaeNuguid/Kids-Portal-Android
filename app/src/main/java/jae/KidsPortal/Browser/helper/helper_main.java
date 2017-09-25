@@ -59,6 +59,7 @@ import java.util.Random;
 import jae.KidsPortal.Browser.R;
 import jae.KidsPortal.Browser.databases.DbAdapter_Bookmarks;
 import jae.KidsPortal.Browser.databases.DbAdapter_ReadLater;
+import jae.KidsPortal.Browser.databases.DbAdapter_Reports;
 
 public class helper_main {
 
@@ -448,6 +449,17 @@ public class helper_main {
 
     public static void save_bookmark (Activity activity, String title, String url, View view) {
         DbAdapter_Bookmarks db = new DbAdapter_Bookmarks(activity);
+        db.open();
+        if(db.isExist(helper_main.secString(url))){
+            Snackbar.make(view, R.string.toast_newTitle, Snackbar.LENGTH_LONG).show();
+        }else{
+            db.insert(helper_main.secString(title), helper_main.secString(url), "", "", helper_main.createDate_norm());
+            Snackbar.make(view, R.string.bookmark_added, Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    public static void save_Report (Activity activity, String title, String url, View view) {
+        DbAdapter_Reports db = new DbAdapter_Reports(activity);
         db.open();
         if(db.isExist(helper_main.secString(url))){
             Snackbar.make(view, R.string.toast_newTitle, Snackbar.LENGTH_LONG).show();

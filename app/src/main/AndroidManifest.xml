@@ -127,7 +127,8 @@
         </provider>
 
         <activity android:name=".ParentAuth" />
-        <activity android:name=".Login"></activity>
+        <activity android:name=".Login" />
+        <activity android:name=".parentPanel"></activity>
     </application>
 
 </manifest>

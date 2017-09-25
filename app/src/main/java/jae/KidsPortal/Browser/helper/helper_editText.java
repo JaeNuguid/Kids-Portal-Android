@@ -153,7 +153,7 @@ public class helper_editText {
     public static void showKeyboard(final Activity activity, final EditText editText, final int i, String text, String hint) {
         editText.requestFocus();
         editText.hasFocus();
-        editText.setText("Enter search or web address...");
+        editText.setText(text);
         editText.setHint(hint);
         editText.setSelection(editText.length());
         new Handler().postDelayed(new Runnable() {

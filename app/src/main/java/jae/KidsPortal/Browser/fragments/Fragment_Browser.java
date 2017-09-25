@@ -63,8 +63,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import jae.KidsPortal.Browser.Activity_Main;
+import jae.KidsPortal.Browser.Login;
 import jae.KidsPortal.Browser.R;
 import jae.KidsPortal.Browser.databases.DbAdapter_ReadLater;
+import jae.KidsPortal.Browser.databases.DbAdapter_Reports;
 import jae.KidsPortal.Browser.helper.class_CustomViewPager;
 import jae.KidsPortal.Browser.helper.helper_browser;
 import jae.KidsPortal.Browser.helper.helper_browser;
@@ -75,6 +78,8 @@ import jae.KidsPortal.Browser.helper.helper_webView;
 import jae.KidsPortal.Browser.utils.Utils_AdBlocker;
 import jae.KidsPortal.Browser.utils.Utils_Checker;
 
+import static android.app.Activity.*;
+import static android.content.ContentValues.TAG;
 import static android.content.Context.DOWNLOAD_SERVICE;
 
 public class Fragment_Browser extends Fragment implements ObservableScrollViewCallbacks {
@@ -215,10 +220,20 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         Uri[] results = null;
         // Check that the response is a good one
-        if (resultCode == Activity.RESULT_OK) {
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                String strEditText = data.getStringExtra("editTextValue");
+
+                if(strEditText.contains("true")){
+                    showReports();
+                }else{
+                  // does nothing...
+                }
+            }
+        }
+        if (resultCode == RESULT_OK) {
             if (data == null) {
                 // If there is not data, then we may have taken a photo
                 if (mCameraPhotoPath != null) {
@@ -227,15 +242,15 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
             } else {
                 String dataString = data.getDataString();
                 if (dataString != null) {
+
                     results = new Uri[]{Uri.parse(dataString)};
                 }
             }
         }
 
-        mFilePathCallback.onReceiveValue(results);
+//        mFilePathCallback.onReceiveValue(results);
         mFilePathCallback = null;
     }
-
     private Runnable updateTimerThread = new Runnable() {
 
         public void run() {
@@ -246,6 +261,16 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
 
     private Handler customHandler = new Handler();
 
+
+    public void showReports(){
+
+
+        horizontalScrollView.setVisibility(View.GONE);
+
+        viewPager.setCurrentItem(10);
+        scrollTabs.setVisibility(View.GONE);
+
+    }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -540,11 +565,23 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
                                         //            Toast.LENGTH_LONG).show();
                                         //    stop = true;
                                         //    break;
-                                        //}
                                         if(zx.toLowerCase().equals(jae.toLowerCase())){
-                                            vview.goBack();
-                                       //    vview.loadUrl("http://www.kidrex.org");
-                                            Log.d("", zx +"  >>>  "+jae);
+
+                                            DbAdapter_Reports db = new DbAdapter_Reports(activity);
+                                            db.open();
+                                            db.deleteDouble(vview.getUrl());
+
+                                            String title = helper_webView.getTitle(activity, vview);
+
+                                            if(db.isExist(helper_main.createDate_norm())){
+                                                Log.d(TAG, "Entry exists" + vview.getUrl());
+                                            }else{
+                                                db.insert(helper_main.secString(title), helper_main.secString(vview.getOriginalUrl()), "", "", helper_main.createDate_norm());
+                                            }
+                                          //  Log.d("", zx+" >> "+jae);
+                                           vview.loadUrl("about:blank");
+                                           vview.loadUrl("http://www.kidrex.org");
+                                     //      Log.d("", zx +"  >>>  "+jae);
                                             Toast.makeText(activity, "PAGE BLOCKED - It contains inappropriate content!",
                                                     Toast.LENGTH_LONG).show();
                                             stop = true;
@@ -834,6 +871,9 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
         } else {
             mWebView.loadUrl(URL);
         }
+
+
+        // when tab is switched
     }
 
     private void setTitle () {
@@ -965,6 +1005,7 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
             @Override
             public void run() {
                 final View v = getActivity().findViewById(R.id.action_history);
+
                 if (v != null) {
                     v.setOnLongClickListener(new View.OnLongClickListener() {
                         @Override
@@ -985,6 +1026,8 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
         helper_browser.prepareMenu(activity, menu);
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -994,6 +1037,14 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
         horizontalScrollView.setVisibility(View.GONE);
 
         int id = item.getItemId();
+        if(id==R.id.action_search_go){
+           if(editText.getText().toString().contains("//setting")){
+
+               Intent intent = new Intent(this.getActivity(), Login.class);
+              startActivityForResult(intent,1);
+
+           }
+        }
 
         if (id == R.id.action_history) {
             viewPager.setCurrentItem(7);

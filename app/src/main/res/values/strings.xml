@@ -39,6 +39,8 @@
     <string name="app_title_readLater">readLater</string>
     <string name="app_title_passStorage">passStorage</string>
     <string name="app_title_history">History</string>
+
+    <string name="app_title_Report">Report</string>
     <string name="app_title_downloads">Downloads</string>
     <string name="app_websearch">Web search</string>
     <string name="app_conf">Confirmation</string>
@@ -317,7 +319,6 @@
     <string name="choose_menu_2">Share</string>
     <string name="choose_menu_3">Rename</string>
     <string name="choose_menu_4">Delete</string>
-
 
 
     <!-- Strings related to login -->

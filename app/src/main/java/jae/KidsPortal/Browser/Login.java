@@ -1,6 +1,7 @@
 package jae.KidsPortal.Browser;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import jae.KidsPortal.Browser.fragments.Fragment_Browser;
+import jae.KidsPortal.Browser.helper.class_CustomViewPager;
 
 public class Login extends AppCompatActivity {
     EditText box1, box2;
@@ -51,7 +56,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    success();
+                   success();
+
                 }else{
                     fail();
                     box1.setText("");
@@ -66,12 +72,23 @@ public class Login extends AppCompatActivity {
 
     public void success(){
 
-        Toast.makeText(this, "Access Approved!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Access Granted!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent();
+        intent.putExtra("editTextValue", "true");
+        setResult(RESULT_OK, intent);
         finish();
+
+
     }
+
+
 
     public void fail(){
         Toast.makeText(this, "Access Denied!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent();
+        intent.putExtra("editTextValue", "false");
+        setResult(RESULT_OK, intent);
+        finish();
 
     }
 }

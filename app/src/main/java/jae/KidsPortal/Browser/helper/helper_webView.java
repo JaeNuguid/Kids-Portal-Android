@@ -52,6 +52,9 @@ import jae.KidsPortal.Browser.Login;
 import jae.KidsPortal.Browser.ParentAuth;
 import jae.KidsPortal.Browser.R;
 import jae.KidsPortal.Browser.databases.DbAdapter_History;
+import jae.KidsPortal.Browser.databases.DbAdapter_Reports;
+import jae.KidsPortal.Browser.fragments.Fragment_Browser;
+import jae.KidsPortal.Browser.fragments.Fragment_History;
 import jae.KidsPortal.Browser.utils.Utils_AdBlocker;
 import jae.KidsPortal.Browser.utils.Utils_Checker;
 import jae.KidsPortal.Browser.utils.Utils_UserAgent;
@@ -207,8 +210,21 @@ public class helper_webView {
                                             //    break;
                                             //}
                                             if(zx.toLowerCase().equals(jae.toLowerCase())){
+                                                DbAdapter_Reports db = new DbAdapter_Reports(activity);
+                                                db.open();
+                                                db.deleteDouble(webView.getUrl());
+
+                                                String title = helper_webView.getTitle(activity, webView);
+
+                                                if(db.isExist(helper_main.createDate_norm())){
+                                                    Log.i(TAG, "Entry exists" + webView.getUrl());
+                                                }else{
+                                                    db.insert(helper_main.secString(title), helper_main.secString(webView.getOriginalUrl()), "", "", helper_main.createDate_norm());
+                                                }
+                                                webView.loadUrl("about:blank");
+
                                                 webView.loadUrl("http://www.kidrex.org");
-                                                Log.d("", zx +"  >>>  "+jae);
+                                                //Log.d("", zx +"  >>>  "+jae);
                                                 Toast.makeText(activity, "PAGE BLOCKED - It contains inappropriate content!",
                                                         Toast.LENGTH_LONG).show();
                                                 stop = true;
@@ -370,8 +386,8 @@ public class helper_webView {
         String wikiLang = sharedPref.getString("wikiLang", "en");
 
         if(text.contains("//setting")){
-            Intent intent = new Intent(activity, Login.class);
-            activity.startActivity(intent);
+         //  Intent intent = new Intent(activity, Login.class);
+         //   activity.startActivity(intent);
         } else if(text.startsWith("http")) {
             mWebView.loadUrl(text);
         } else if (text.startsWith("www.")) {

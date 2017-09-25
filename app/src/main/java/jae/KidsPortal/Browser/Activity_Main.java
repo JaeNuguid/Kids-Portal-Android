@@ -20,6 +20,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import jae.KidsPortal.Browser.fragments.Fragment_Reports;
 import jae.KidsPortal.Browser.helper.class_CustomViewPager;
 import jae.KidsPortal.Browser.helper.helper_browser;
 import jae.KidsPortal.Browser.helper.helper_editText;
@@ -127,6 +128,9 @@ public class Activity_Main extends AppCompatActivity{
                 } else if (position == 8) {
                     Fragment_Pass fragment = (Fragment_Pass) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
                     fragment.fragmentAction();
+                } else if (position == 10) {
+                    Fragment_Reports fragment = (Fragment_Reports) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
+                    fragment.fragmentAction();
                 } else {
                     Fragment_Files fragment = (Fragment_Files) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
                     fragment.fragmentAction();
@@ -226,6 +230,14 @@ public class Activity_Main extends AppCompatActivity{
                     viewPager.setCurrentItem(8);
                 }
             }, 250);
+        }else if ("Reports".equals(action)) {
+            sharedPref.edit().putInt("appShortcut", 1).apply();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    viewPager.setCurrentItem(10);
+                }
+            }, 250);
         }
     }
 
@@ -246,6 +258,7 @@ public class Activity_Main extends AppCompatActivity{
         adapter.addFragment(new Fragment_History(), String.valueOf(getString(R.string.app_title_history)));
         adapter.addFragment(new Fragment_Pass(), String.valueOf(getString(R.string.app_title_passStorage)));
         adapter.addFragment(new Fragment_Files(), String.valueOf(getString(R.string.app_name)));
+        adapter.addFragment(new Fragment_Reports(), String.valueOf(getString(R.string.app_title_Report)));
 
         viewPager.setAdapter(adapter);
         Handler handler = new Handler();
@@ -306,6 +319,10 @@ public class Activity_Main extends AppCompatActivity{
             fragment.doBack();
         } else if(viewPager.getCurrentItem() == 9) {
             Fragment_Files fragment = (Fragment_Files) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
+            fragment.doBack();
+        }
+        else if(viewPager.getCurrentItem() == 10) {
+            Fragment_Reports fragment = (Fragment_Reports) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
             fragment.doBack();
         }
     }

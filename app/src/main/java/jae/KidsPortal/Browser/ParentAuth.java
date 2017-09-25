@@ -55,6 +55,7 @@ public class ParentAuth extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     success();
+
                 }else{
                 fail();
                     box1.setText("");
