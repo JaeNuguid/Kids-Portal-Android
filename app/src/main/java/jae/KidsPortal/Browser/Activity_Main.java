@@ -16,10 +16,8 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import jae.KidsPortal.Browser.fragments.Fragment_Reports;
 import jae.KidsPortal.Browser.helper.class_CustomViewPager;
 import jae.KidsPortal.Browser.helper.helper_browser;
@@ -43,17 +41,15 @@ public class Activity_Main extends AppCompatActivity{
     private TextView listBar;
     private EditText editText;
     private Toolbar toolbar;
-
     // Others
     private SharedPreferences sharedPref;
 
-
-
+    public String user;
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+   // sig.onCreate();
         super.onCreate(savedInstanceState);
 
         final Activity activity = Activity_Main.this;

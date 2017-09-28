@@ -184,7 +184,7 @@ public class helper_toolbar {
         cardView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                sharedPref.edit().putString("openURL", sharedPref.getString("startURL", "http://www.kidrex.org")).apply();
+                sharedPref.edit().putString("openURL", sharedPref.getString("startURL", "file:///android_asset/kidsportal.html")).apply();
                 viewPager.setCurrentItem(newTab);
                 horizontalScrollView.setVisibility(View.GONE);
 
@@ -192,6 +192,7 @@ public class helper_toolbar {
                     Fragment_Browser fragment = (Fragment_Browser) viewPager.getAdapter().instantiateItem(viewPager, viewPager.getCurrentItem());
                     fragment.fragmentAction();
                 }
+
                 return false;
             }
         });
@@ -234,7 +235,7 @@ public class helper_toolbar {
         cardView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                sharedPref.edit().putString("openURL", sharedPref.getString("startURL", "http://www.kidrex.org")).apply();
+                sharedPref.edit().putString("openURL", sharedPref.getString("startURL", "file:///android_asset/kidsportal.html")).apply();
                 viewPager.setCurrentItem(newTab);
                 dialog.cancel();
                 return false;

@@ -9,17 +9,19 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
 
 public class ParentAuth extends AppCompatActivity {
 
     EditText box1, box2;
     ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth;
+    public String userE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,9 @@ public class ParentAuth extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    userE = email;
+                 //   OneSignal.sendTag("user_ID",userE);
+
                     success();
 
                 }else{
@@ -76,6 +81,5 @@ public class ParentAuth extends AppCompatActivity {
 
     public void fail(){
         Toast.makeText(this, "Registration Failed!", Toast.LENGTH_SHORT).show();
-
     }
 }

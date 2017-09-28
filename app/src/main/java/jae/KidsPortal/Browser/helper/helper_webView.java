@@ -223,7 +223,7 @@ public class helper_webView {
                                                 }
                                                 webView.loadUrl("about:blank");
 
-                                                webView.loadUrl("http://www.kidrex.org");
+                                                webView.loadUrl("file:///android_asset/kidsportal.html");
                                                 //Log.d("", zx +"  >>>  "+jae);
                                                 Toast.makeText(activity, "PAGE BLOCKED - It contains inappropriate content!",
                                                         Toast.LENGTH_LONG).show();

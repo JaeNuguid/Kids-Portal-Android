@@ -263,12 +263,11 @@
 
     <string name="action_Google">Google search engine.</string>
     <string name="action_Kiddle">Kiddle search.</string>
-    <string name="action_Kidrex">Kidsrex search.</string>
+    <string name="action_Kidrex">Kidrex search.</string>
     <string name="action_Youtube">Youtube search.</string>
 
     // Intro
 
-    <string name="intro_skip">Skip</string>
     <string name="intro_finish">Let\'s start.</string>
 
     <string name="intro1_title">Kids Portal</string>

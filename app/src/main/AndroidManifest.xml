@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+
     package="jae.KidsPortal.Browser">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -20,9 +21,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme_blue"
-        tools:ignore="GoogleAppIndexingWarning">
-
-        <!-- Browser Main Tab -->
+        tools:ignore="GoogleAppIndexingWarning"
+        >
+            <!-- Browser Main Tab -->
 
         <activity
             android:name=".Activity_Main"

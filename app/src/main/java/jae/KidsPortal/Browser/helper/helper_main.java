@@ -283,7 +283,7 @@ public class helper_main {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }
 
-        sharedPref.edit().putString("openURL", sharedPref.getString("startURL", "http://www.kidrex.org")).apply();
+        sharedPref.edit().putString("openURL", sharedPref.getString("startURL", "file:///android_asset/kidsportal.html")).apply();
         sharedPref.edit().putString("webView_url", "").apply();
         sharedPref.edit().putInt("keyboard", 0).apply();
         sharedPref.edit().putInt("tab", 0).apply();

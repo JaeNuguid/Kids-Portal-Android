@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 
 import com.chyrta.onboarder.OnboarderActivity;
 import com.chyrta.onboarder.OnboarderPage;
+import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +22,7 @@ public class Activity_intro extends OnboarderActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         List<OnboarderPage> onboarderPages = new ArrayList<>();
-
         // Create your first page
         OnboarderPage onboarderPage1 = new OnboarderPage(getString(R.string.intro1_title), getString(R.string.intro1_text), R.drawable.ic_launcher_intro);
         OnboarderPage onboarderPage2 = new OnboarderPage(getString(R.string.intro2_title), getString(R.string.intro2_text), R.drawable.s_1);
@@ -49,22 +49,13 @@ public class Activity_intro extends OnboarderActivity {
         onboarderPages.add(onboarderPage3);
         onboarderPages.add(onboarderPage4);
         onboarderPages.add(onboarderPage5);
-
         // And pass your pages to 'setOnboardPagesReady' method
         setActiveIndicatorColor(R.color.colorLight);
         setInactiveIndicatorColor(R.color.colorLight_trans);
         shouldDarkenButtonsLayout(true);
-        setSkipButtonTitle(getString(R.string.intro_skip));
+        setSkipButtonHidden();
         setFinishButtonTitle(getString(R.string.intro_finish));
         setOnboardPagesReady(onboarderPages);
-    }
-
-    @Override
-    public void onSkipButtonPressed() {
-        // Optional: by default it skips onboarder to the end
-        super.onSkipButtonPressed();
-        // Define your actions when the user press 'Skip' button
-        finish();
     }
 
     @Override
@@ -76,5 +67,10 @@ public class Activity_intro extends OnboarderActivity {
         Intent intent = new Intent(this, ParentAuth.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onSkipButtonPressed() {
+     //
     }
 }

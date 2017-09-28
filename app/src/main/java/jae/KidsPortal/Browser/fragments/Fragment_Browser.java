@@ -580,7 +580,7 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
                                             }
                                           //  Log.d("", zx+" >> "+jae);
                                            vview.loadUrl("about:blank");
-                                           vview.loadUrl("http://www.kidrex.org");
+                                           vview.loadUrl("file:///android_asset/kidsportal.html");
                                      //      Log.d("", zx +"  >>>  "+jae);
                                             Toast.makeText(activity, "PAGE BLOCKED - It contains inappropriate content!",
                                                     Toast.LENGTH_LONG).show();
@@ -867,7 +867,7 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
             snackbar.show();
             mWebView.loadUrl(URL.replace("openLogin", ""));
         } else if (sharedPref.getString("tab_" + tab_number, "").isEmpty() && URL.length() == 0) {
-            mWebView.loadUrl(sharedPref.getString("startURL", "http://www.kidrex.org"));
+            mWebView.loadUrl(sharedPref.getString("startURL", "file:///android_asset/kidsportal.html"));
         } else {
             mWebView.loadUrl(URL);
         }

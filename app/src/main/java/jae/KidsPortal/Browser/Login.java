@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,11 +22,14 @@ import jae.KidsPortal.Browser.helper.class_CustomViewPager;
 
 public class Login extends AppCompatActivity {
     EditText box1, box2;
+    public String user;
     ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
