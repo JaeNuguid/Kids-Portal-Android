@@ -1,6 +1,7 @@
 package jae.KidsPortal.Browser;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,10 +33,10 @@ public class ParentAuth extends AppCompatActivity {
         box1 = (EditText) findViewById(R.id.editTextEmail);
         box2 = (EditText) findViewById(R.id.editTextPassword);
     }
-
+    String email, pass;
     public void signup(View view){
-        final String email = box1.getText().toString().trim();
-        String pass = box2.getText().toString().trim();
+        email = box1.getText().toString().trim();
+        pass = box2.getText().toString().trim();
 
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this, "Please enter an email.", Toast.LENGTH_SHORT).show();
@@ -57,12 +58,12 @@ public class ParentAuth extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     userE = email;
-                 //   OneSignal.sendTag("user_ID",userE);
+                    //   OneSignal.sendTag("user_ID",userE);
 
                     success();
 
                 }else{
-                fail();
+                    fail();
                     box1.setText("");
                     box2.setText("");
                 }
@@ -73,10 +74,22 @@ public class ParentAuth extends AppCompatActivity {
 
     }
 
+    public void loginNow(View v){
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+        finish();
+    }
     public void success(){
 
-        Toast.makeText(this, "You are now registered as parent-admin for this device!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "You are now registered as a parent-admin!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, Activity_Main.class);
+        Bundle x = new Bundle();
+        x.putString("username", email);
+        x.putBoolean("loggedIn", true);
+        intent.putExtras(x);
+        startActivity(intent);
         finish();
+
     }
 
     public void fail(){

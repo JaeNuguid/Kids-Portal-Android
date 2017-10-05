@@ -56,6 +56,8 @@ import android.widget.Toast;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ObservableWebView;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -66,6 +68,7 @@ import java.io.OutputStream;
 import jae.KidsPortal.Browser.Activity_Main;
 import jae.KidsPortal.Browser.Login;
 import jae.KidsPortal.Browser.R;
+import jae.KidsPortal.Browser.Website;
 import jae.KidsPortal.Browser.databases.DbAdapter_ReadLater;
 import jae.KidsPortal.Browser.databases.DbAdapter_Reports;
 import jae.KidsPortal.Browser.helper.class_CustomViewPager;
@@ -576,7 +579,17 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
                                             if(db.isExist(helper_main.createDate_norm())){
                                                 Log.d(TAG, "Entry exists" + vview.getUrl());
                                             }else{
-                                                db.insert(helper_main.secString(title), helper_main.secString(vview.getOriginalUrl()), "", "", helper_main.createDate_norm());
+                                            db.insert(helper_main.secString(title), helper_main.secString(vview.getOriginalUrl()), "", "", helper_main.createDate_norm());
+                                                if(sharedPref.getString("username","").length() > 2){
+                                                    String user = (sharedPref.getString("username","")).split("@", 2)[0];
+
+                                                    Website we = new Website(helper_main.secString(title),helper_main.secString(vview.getOriginalUrl()), helper_main.createDate_norm());
+                                                    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                                                    DatabaseReference mRootReference = firebaseDatabase.getReference();
+                                                    DatabaseReference mHeadingReference = mRootReference.child("Users");
+                                                    mHeadingReference.child(user).push().setValue(we);
+                                            }
+
                                             }
                                           //  Log.d("", zx+" >> "+jae);
                                            vview.loadUrl("about:blank");
@@ -1041,7 +1054,8 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
            if(editText.getText().toString().contains("//setting")){
 
                Intent intent = new Intent(this.getActivity(), Login.class);
-              startActivityForResult(intent,1);
+              startActivity(intent);
+               activity.finish();
 
            }
         }

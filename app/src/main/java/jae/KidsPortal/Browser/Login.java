@@ -37,6 +37,11 @@ public class Login extends AppCompatActivity {
         box2 = (EditText) findViewById(R.id.editTextPassword);
     }
 
+    public void register(View view){
+        Intent intent = new Intent(this, ParentAuth.class);
+        startActivity(intent);
+        finish();
+    }
     public void login(View view){
         final String email = box1.getText().toString().trim();
         String pass = box2.getText().toString().trim();
@@ -60,7 +65,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                   success();
+                    success(email);
 
                 }else{
                     fail();
@@ -74,25 +79,23 @@ public class Login extends AppCompatActivity {
 
     }
 
-    public void success(){
+    public void success(String email){
 
-        Toast.makeText(this, "Access Granted!", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent();
-        intent.putExtra("editTextValue", "true");
-        setResult(RESULT_OK, intent);
+        Toast.makeText(this, "You are now logged in!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, Activity_Main.class);
+        Bundle x = new Bundle();
+        x.putString("username", email);
+        x.putBoolean("loggedIn", true);
+        intent.putExtras(x);
+        startActivity(intent);
         finish();
-
 
     }
 
 
 
     public void fail(){
-        Toast.makeText(this, "Access Denied!", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent();
-        intent.putExtra("editTextValue", "false");
-        setResult(RESULT_OK, intent);
-        finish();
+        Toast.makeText(this, "Access Failed!", Toast.LENGTH_SHORT).show();
 
     }
 }

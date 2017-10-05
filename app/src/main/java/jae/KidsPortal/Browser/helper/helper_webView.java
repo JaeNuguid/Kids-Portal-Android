@@ -44,6 +44,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,6 +54,7 @@ import java.util.Map;
 import jae.KidsPortal.Browser.Login;
 import jae.KidsPortal.Browser.ParentAuth;
 import jae.KidsPortal.Browser.R;
+import jae.KidsPortal.Browser.Website;
 import jae.KidsPortal.Browser.databases.DbAdapter_History;
 import jae.KidsPortal.Browser.databases.DbAdapter_Reports;
 import jae.KidsPortal.Browser.fragments.Fragment_Browser;
@@ -219,8 +223,19 @@ public class helper_webView {
                                                 if(db.isExist(helper_main.createDate_norm())){
                                                     Log.i(TAG, "Entry exists" + webView.getUrl());
                                                 }else{
-                                                    db.insert(helper_main.secString(title), helper_main.secString(webView.getOriginalUrl()), "", "", helper_main.createDate_norm());
-                                                }
+                                                db.insert(helper_main.secString(title), helper_main.secString(webView.getOriginalUrl()), "", "", helper_main.createDate_norm());
+                                                    if(sharedPref.getString("username","").length() > 2){
+                                                        String user = (sharedPref.getString("username","")).split("@", 2)[0];
+
+                                                        Website we = new Website(helper_main.secString(title),helper_main.secString(webView.getOriginalUrl()), helper_main.createDate_norm());
+                                                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                                                        DatabaseReference mRootReference = firebaseDatabase.getReference();
+                                                        DatabaseReference mHeadingReference = mRootReference.child("Users");
+                                                        mHeadingReference.child(user).push().setValue(we);
+                                                    }
+
+                                            }
+
                                                 webView.loadUrl("about:blank");
 
                                                 webView.loadUrl("file:///android_asset/kidsportal.html");

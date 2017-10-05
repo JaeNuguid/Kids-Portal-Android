@@ -51,6 +51,16 @@
             android:layout_margin="15dp"
             android:text="Signup"
             android:onClick="signup"/>
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="10sp"
+            android:text="Already registered? Login here!"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:onClick="loginNow"/>
 
         <TextView
             android:id="@+id/textView"
@@ -59,7 +69,7 @@
             android:layout_gravity="center"
             android:layout_margin="15dp"
             android:text="As a parent, you have the responsibility to look out for your children's safety, let Kids Portal help you."
-           />
+            />
 
     </LinearLayout>
 

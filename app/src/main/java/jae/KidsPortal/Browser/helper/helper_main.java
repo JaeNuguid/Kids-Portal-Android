@@ -56,6 +56,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
+import jae.KidsPortal.Browser.Login;
 import jae.KidsPortal.Browser.R;
 import jae.KidsPortal.Browser.databases.DbAdapter_Bookmarks;
 import jae.KidsPortal.Browser.databases.DbAdapter_ReadLater;
@@ -294,8 +295,16 @@ public class helper_main {
         boolean show = sharedPref.getBoolean("introShowDo_notShow", true);
 
         if (show){
-            helper_main.switchToActivity(activity, Activity_intro.class);
-        }
+            Intent intent = new Intent(activity,Activity_intro.class);
+            activity.startActivity(intent);
+            activity.finish();
+            //helper_main.switchToActivity(activity, Activity_intro.class);
+        }else if(sharedPref.getString("username", "" ).equals("")){
+
+        Intent intent = new Intent(activity, Login.class);
+        activity.startActivity(intent);
+        activity.finish();
+    }
 
         if (sharedPref.getString("saved_key_ok", "no").equals("no")) {
             char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!§$%&/()=?;:_-.,+#*<>".toCharArray();

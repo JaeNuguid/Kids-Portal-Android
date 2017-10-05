@@ -16,6 +16,8 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 import jae.KidsPortal.Browser.fragments.Fragment_Reports;
@@ -62,8 +64,22 @@ public class Activity_Main extends AppCompatActivity{
         sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         sharedPref.edit().putBoolean("isOpened", true).apply();
 
+        if( getIntent().getExtras() !=null) {
+            Bundle b = getIntent().getExtras();
+
+            if (b.containsKey("username")) {
+                if (b.getString("username").length() > 2) {
+                    Toast.makeText(this,"Logged in: "+b.getString("username"), Toast.LENGTH_LONG).show();
+                    sharedPref.edit().putString("username", b.getString("username")).apply();
+                    sharedPref.edit().putBoolean("loggedIn", true).apply();
+                    //  helper_main.grantPermissionsStorage(activity);
+                }
+            }
+
+        }
         helper_main.onStart(activity);
-        helper_main.grantPermissionsStorage(activity);
+
+        //helper_main.grantPermissionsStorage(activity);
         helper_browser.resetTabs(activity);
 
 
