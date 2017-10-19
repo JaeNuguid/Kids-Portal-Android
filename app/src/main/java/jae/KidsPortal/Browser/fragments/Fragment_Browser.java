@@ -541,6 +541,8 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
 
             final Utils_Checker checker = new Utils_Checker();
             final WebView vview = view;
+            vview.getSettings().setLoadsImagesAutomatically(false);
+            vview.setVisibility(View.GONE);
             view.evaluateJavascript(
                     "(function() { return ('<html>'+document.getElementsByTagName('html')[0].innerText+'</html>'); })();",
                     new ValueCallback<String>() {
@@ -583,7 +585,7 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
                                                 if(sharedPref.getString("username","").length() > 2){
                                                     String user = (sharedPref.getString("username","")).split("@", 2)[0];
 
-                                                    Website we = new Website(helper_main.secString(title),helper_main.secString(vview.getOriginalUrl()), helper_main.createDate_norm());
+                                                    Website we = new Website(zx+" - "+helper_main.secString(title),helper_main.secString(vview.getOriginalUrl()), helper_main.createDate_norm());
                                                     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                                                     DatabaseReference mRootReference = firebaseDatabase.getReference();
                                                     DatabaseReference mHeadingReference = mRootReference.child("Users");
@@ -598,6 +600,9 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
                                             Toast.makeText(activity, "PAGE BLOCKED - It contains inappropriate content!",
                                                     Toast.LENGTH_LONG).show();
                                             stop = true;
+
+                                            vview.setVisibility(View.VISIBLE);
+                                            vview.getSettings().setLoadsImagesAutomatically(true);
                                             break;
                                         }
                                     }
@@ -608,7 +613,8 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
 
                         }
                     });
-
+            vview.getSettings().setLoadsImagesAutomatically(true);
+            vview.setVisibility(View.VISIBLE);
             sharedPref.edit().putString("tab_" + tab_number, helper_webView.getTitle(activity, mWebView)).apply();
             progressBar.setProgress(progress);
             progressBar.setVisibility(progress == 100 ? View.GONE : View.VISIBLE);
@@ -826,7 +832,7 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
         sharedPref.edit().putInt("tab", viewPager.getCurrentItem()).apply();
         sharedPref.edit().putInt("keyboard", 0).apply();
 
-        final String URL = sharedPref.getString("openURL","https://github.com/JaeNuguid");
+        final String URL = sharedPref.getString("openURL","https://jaenuguid.github.io/Kids-Portal-Web-Browser/");
 
         if (URL.equals(mWebView.getUrl()) || URL.equals("") && sharedPref.getString("tab_" + tab_number, "").length() > 0) {
             Log.i(TAG, "Tab switched");
@@ -1051,13 +1057,7 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
 
         int id = item.getItemId();
         if(id==R.id.action_search_go){
-           if(editText.getText().toString().contains("//setting")){
 
-               Intent intent = new Intent(this.getActivity(), Login.class);
-              startActivity(intent);
-               activity.finish();
-
-           }
         }
 
         if (id == R.id.action_history) {

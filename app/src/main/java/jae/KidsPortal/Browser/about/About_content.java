@@ -44,7 +44,7 @@ class About_content {
                 .text(R.string.about_changelog)
                 .subText(R.string.about_changelog_summary)
                 .icon(R.drawable.format_list_bulleted2)
-                .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, c.getString(R.string.about_changelog), "https://github.com/JaeNuguid/Kids-Portal-Android", true, false))
+                .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, c.getString(R.string.about_changelog), "https://jaenuguid.github.io/Kids-Portal-Web-Browser/", true, false))
                 .build());
 
         appCardBuilder.addItem(new MaterialAboutActionItem.Builder()

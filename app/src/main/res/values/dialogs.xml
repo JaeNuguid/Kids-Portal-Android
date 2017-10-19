@@ -6,7 +6,7 @@
 
     <string name="about_title">Copyright © 2017  by Jae Allen Nuguid</string>
     <string name="about_text">
-        For more information visit the project site on github: https://github.com/JaeNuguid/Kids-Portal-Android&lt;br>&lt;br>
+        For more information visit the project site on github: https://jaenuguid.github.io/Kids-Portal-Web-Browser/&lt;br>&lt;br>
 
         This program is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
@@ -85,15 +85,16 @@
 
     <string-array name="listArraySearchEngine">
         <item>Google</item>
-        <item>Kiddle</item>
         <item>Kidrex</item>
+        <item>Kiddle</item>
+
         <item>Youtube</item>
     </string-array>
 
     <string-array name="listValuesSearchEngine">
         <item>https://www.google.com/search?q=</item>
-        <item>http://www.kiddle.co/s.php?q=</item>
         <item>http://www.kidrex.org/results/?q=</item>
+        <item>http://www.kiddle.co/s.php?q=</item>
         <item>https://www.youtube.com/results?search_query=</item>
     </string-array>
 
@@ -138,7 +139,7 @@
     </string-array>
 
     <string name="def_wiki">en</string>
-    <string name="def_search">http://www.kidrex.org/results/?q=</string>
+    <string name="def_search">http://www.kiddle.co/s.php?q=</string>
     <string name="def_rot">device</string>
 
     <string-array name="listArrayTabMain">

@@ -72,7 +72,7 @@ public class Activity_Main extends AppCompatActivity{
                     Toast.makeText(this,"Logged in: "+b.getString("username"), Toast.LENGTH_LONG).show();
                     sharedPref.edit().putString("username", b.getString("username")).apply();
                     sharedPref.edit().putBoolean("loggedIn", true).apply();
-                    //  helper_main.grantPermissionsStorage(activity);
+                   helper_main.grantPermissionsStorage(activity);
                 }
             }
 
@@ -190,7 +190,7 @@ public class Activity_Main extends AppCompatActivity{
 
         if (Intent.ACTION_SEND.equals(action)) {
             String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
-            String searchEngine = sharedPref.getString("searchEngine", "http://www.kidrex.org/results/?q=");
+            String searchEngine = sharedPref.getString("searchEngine", "http://www.kiddle.co/s.php?q=");
             sharedPref.edit().putString("openURL", searchEngine + sharedText).apply();
             handler = new Handler();
             handler.postDelayed(new Runnable() {

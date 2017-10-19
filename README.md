@@ -1,6 +1,6 @@
 # Kids Portal: A Child-safe Android Web Browser 
 
-<a href="https://www.linkedin.com/in/jaenuguid/">
+<a href="https://jaenuguid.github.io/Kids-Portal-Web-Browser/">
   <img src="https://github.com/JaeNuguid/Kids-Portal-Version-2/blob/master/newKidsPortal/Resources/KidsPortal.png?raw=true" width="250" height="250"/>
 </a>
   

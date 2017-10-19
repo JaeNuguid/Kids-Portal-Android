@@ -297,8 +297,9 @@ public class helper_main {
         if (show){
             Intent intent = new Intent(activity,Activity_intro.class);
             activity.startActivity(intent);
+
             activity.finish();
-            //helper_main.switchToActivity(activity, Activity_intro.class);
+
         }else if(sharedPref.getString("username", "" ).equals("")){
 
         Intent intent = new Intent(activity, Login.class);

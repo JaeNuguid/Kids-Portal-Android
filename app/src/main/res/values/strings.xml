@@ -284,8 +284,8 @@
     <string name="intro4_title">Settings</string>
     <string name="intro4_text">Press the dotted icon on the bottom right to access the Settings menu. From there, you can change some current session settings and the advanced ones.</string>
 
-    <string name="intro5_title">Parent Control</string>
-    <string name="intro5_text">Once you are successfully registered as a parent-admin, enter \"//setting\" in the Navigation Bar to access the Parent Control Panel.</string>
+    <string name="intro5_title">Parent-App Account</string>
+    <string name="intro5_text">To change the Parent-App Account associated to this device, enter \"//setting\" in the Navigation Bar and log in with a new or different Parent-App Account.</string>
 
 
     // About

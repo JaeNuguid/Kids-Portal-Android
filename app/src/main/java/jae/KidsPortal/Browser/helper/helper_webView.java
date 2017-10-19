@@ -185,6 +185,8 @@ public class helper_webView {
                 super.onPageFinished(view, url);
 
                 final Utils_Checker checker = new Utils_Checker();
+               webView.getSettings().setLoadsImagesAutomatically(false);
+                webView.setVisibility(View.GONE);
                 webView.evaluateJavascript(
                         "(function() { return ('<html>'+document.getElementsByTagName('html')[0].innerText+'</html>'); })();",
                         new ValueCallback<String>() {
@@ -227,7 +229,7 @@ public class helper_webView {
                                                     if(sharedPref.getString("username","").length() > 2){
                                                         String user = (sharedPref.getString("username","")).split("@", 2)[0];
 
-                                                        Website we = new Website(helper_main.secString(title),helper_main.secString(webView.getOriginalUrl()), helper_main.createDate_norm());
+                                                        Website we = new Website(helper_main.secString(title),helper_main.secString(zx+" - "+webView.getOriginalUrl()), helper_main.createDate_norm());
                                                         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                                                         DatabaseReference mRootReference = firebaseDatabase.getReference();
                                                         DatabaseReference mHeadingReference = mRootReference.child("Users");
@@ -240,9 +242,11 @@ public class helper_webView {
 
                                                 webView.loadUrl("file:///android_asset/kidsportal.html");
                                                 //Log.d("", zx +"  >>>  "+jae);
-                                                Toast.makeText(activity, "PAGE BLOCKED - It contains inappropriate content!",
+                                                Toast.makeText(activity, "PAGE REDIRECTED as it contains inappropriate content.",
                                                         Toast.LENGTH_LONG).show();
                                                 stop = true;
+                                                webView.setVisibility(View.VISIBLE);
+                                                webView.getSettings().setLoadsImagesAutomatically(true);
                                                 break;
                                             }
                                     }
@@ -253,7 +257,8 @@ public class helper_webView {
 
                             }
                         });
-
+                webView.getSettings().setLoadsImagesAutomatically(true);
+                webView.setVisibility(View.VISIBLE);
                 String title = helper_webView.getTitle(activity, webView);
                 urlBar.setText("Enter search or web address...");
                 sharedPref.edit().putString("openURL", "").apply();
@@ -395,15 +400,20 @@ public class helper_webView {
         });
     }public static void openURL (Activity activity, WebView mWebView, EditText editText) {
 
+        mWebView.setVisibility(View.GONE);
+        mWebView.getSettings().setLoadsImagesAutomatically(false);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         String text = editText.getText().toString();
-        String searchEngine = sharedPref.getString("searchEngine", "http://www.kidrex.org/results/?q=");
+        String searchEngine = sharedPref.getString("searchEngine", "http://www.kiddle.co/s.php?q=");
         String wikiLang = sharedPref.getString("wikiLang", "en");
 
         if(text.contains("//setting")){
-         //  Intent intent = new Intent(activity, Login.class);
-         //   activity.startActivity(intent);
-        } else if(text.startsWith("http")) {
+           Intent intent = new Intent(activity, Login.class);
+            activity.startActivity(intent);
+            activity.finish();
+        } else if(text.contains("google.com")) {
+            mWebView.loadUrl("http://www.google.com/webhp?complete=0");
+        }else if(text.startsWith("http")) {
             mWebView.loadUrl(text);
         } else if (text.startsWith("www.")) {
             mWebView.loadUrl("https://" + text);
@@ -415,13 +425,12 @@ public class helper_webView {
             if (text.startsWith(".Y ")) {
                 mWebView.loadUrl("https://www.youtube.com/results?search_query=" + subStr);
             }else if (text.startsWith(".G ")) {
-                mWebView.loadUrl("https://www.google.com/search?q=" + subStr);
+                mWebView.loadUrl("https://www.google.com/search?complete=0&q=" + subStr);
             }else if (text.startsWith(".K ")) {
                 mWebView.loadUrl("http://www.kiddle.co/s.php?q=" + subStr);
             }else if (text.startsWith(".R ")) {
                 mWebView.loadUrl("http://www.kidrex.org/results/?q=" + subStr);
-            }else {
-
+            }else{
                 mWebView.loadUrl(searchEngine + text);
             }
 
