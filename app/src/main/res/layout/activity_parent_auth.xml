@@ -4,28 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Back"
     android:elevation="0dp"
     android:theme="@style/AppTheme_blue"
     tools:context="jae.KidsPortal.Browser.ParentAuth">
 
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout2"
-        android:orientation="vertical"
-        android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
         android:weightSum="1">
 
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_alignParentStart="true"
-            android:baselineAlignBottom="false"
             android:layout_gravity="center"
+            android:baselineAlignBottom="false"
             app:srcCompat="@drawable/ic_launcher_intro" />
 
         <EditText
@@ -33,34 +34,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:hint="Enter email"
-            android:inputType="textEmailAddress" />
+            android:hint="username"
+            android:inputType="text"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:hint="Enter password"
-            android:inputType="textPassword" />
+            android:hint="password"
+            android:inputType="textPassword"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/editTextPassword2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/buttonSignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Signup"
-            android:onClick="signup"/>
+            android:onClick="signup"
+            android:text="Signup" />
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="10sp"
+            android:onClick="loginNow"
             android:text="Already registered? Login here!"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textColor="@android:color/black"
-            android:onClick="loginNow"/>
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/textView"
@@ -68,11 +81,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="15dp"
-            android:text="As a parent, you have the responsibility to look out for your children's safety, let Kids Portal help you."
-            />
+            android:text="As a parent, you have the responsibility to look out for your children's safety, let Kids Portal help you." />
 
     </LinearLayout>
-
 
 
 </RelativeLayout>

@@ -300,7 +300,7 @@ public class helper_main {
 
             activity.finish();
 
-        }else if(sharedPref.getString("username", "" ).equals("")){
+        }else if(sharedPref.getString("user", "" ).equals("")){
 
         Intent intent = new Intent(activity, Login.class);
         activity.startActivity(intent);

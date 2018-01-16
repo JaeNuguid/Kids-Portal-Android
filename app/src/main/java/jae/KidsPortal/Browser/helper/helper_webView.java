@@ -48,7 +48,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 import jae.KidsPortal.Browser.Login;
@@ -170,7 +175,7 @@ public class helper_webView {
             myUserAgent.setUserAgent(activity, webView, false, webView.getUrl());
         }
     }
-        Utils_Checker checker = new Utils_Checker();
+        static Utils_Checker checker = new Utils_Checker();
 
 
     public static void webView_WebViewClient (final Activity activity, final WebView webView, final TextView urlBar) {
@@ -184,7 +189,6 @@ public class helper_webView {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 
-                final Utils_Checker checker = new Utils_Checker();
                webView.getSettings().setLoadsImagesAutomatically(false);
                 webView.setVisibility(View.GONE);
                 webView.evaluateJavascript(
@@ -192,68 +196,56 @@ public class helper_webView {
                         new ValueCallback<String>() {
                             @Override
                             public void onReceiveValue(String html) {
-                               String newY = html.trim().replaceAll(" +", " ");;
-                               String newX = newY.replaceAll("[^A-Za-z]", " ");
-                              String[] newZ = newX.split(" ");
+                                String newY = html.trim().replaceAll(" +", " ");
 
-                                boolean stop = false;
+                                String newX = newY.replaceAll("[^A-Za-z]", " ");
+                                String[] newZ = newX.split(" ");
 
-                                for(String zx : newZ){
+                                HashSet<String> webText = new HashSet<String>(Arrays.asList(newZ));
 
-                                    if(stop) {
-                                     stop = true;
-                                     break;
+                                String tit="",dat="",ur="";
+                                if (!Collections.disjoint(webText, checker.getXwords())) {
+
+                                    String title = helper_webView.getTitle(activity, webView);
+                                    tit = helper_main.secString(title) ;
+                                    ur = helper_main.secString(webView.getOriginalUrl()) ;
+                                    dat = helper_main.createDate_norm();
+
+
+                                    webView.loadUrl("about:blank");
+
+                                    webView.loadUrl("file:///android_asset/kidsportal.html");
+
+                                    DbAdapter_Reports db = new DbAdapter_Reports(activity);
+                                    db.open();
+                                    db.deleteDouble(webView.getUrl());
+
+
+                                    if(db.isExist(helper_main.createDate_norm())){
+                                        Log.i(TAG, "Entry exists" + webView.getUrl());
+                                    }else{
+                                        msg("The page has been blocked. It contains inappropriate content!");
+                                        db.insert(tit,ur, "", "", dat);
+                                        if(sharedPref.getString("user","").length() > 2){
+                                            String user = (sharedPref.getString("user",""));
+
+                                            Website we = new Website(tit,ur, dat);
+                                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                            DatabaseReference myRef = database.getReference("Reports");
+                                            myRef.child(user).push().setValue(we);
+                                        }
+
                                     }
-                                    if(zx.length() >2 ){
-                                        for(String jae : checker.getXwords()){
 
-                                            //if(checker.patternCheck(zx.toLowerCase(),jae.toLowerCase())){
-                                            //    webView.loadUrl("http://www.kidrex.org");
-                                            //    Log.d("", zx +"  >>>  "+jae);
-                                            //   Toast.makeText(activity, "PAGE BLOCKED - It contains inappropriate content!",
-                                            //            Toast.LENGTH_LONG).show();
-                                            //    stop = true;
-                                            //    break;
-                                            //}
-                                            if(zx.toLowerCase().equals(jae.toLowerCase())){
-                                                DbAdapter_Reports db = new DbAdapter_Reports(activity);
-                                                db.open();
-                                                db.deleteDouble(webView.getUrl());
 
-                                                String title = helper_webView.getTitle(activity, webView);
+                                    webView.setVisibility(View.VISIBLE);
+                                    webView.getSettings().setLoadsImagesAutomatically(true);
 
-                                                if(db.isExist(helper_main.createDate_norm())){
-                                                    Log.i(TAG, "Entry exists" + webView.getUrl());
-                                                }else{
-                                                db.insert(helper_main.secString(title), helper_main.secString(webView.getOriginalUrl()), "", "", helper_main.createDate_norm());
-                                                    if(sharedPref.getString("username","").length() > 2){
-                                                        String user = (sharedPref.getString("username","")).split("@", 2)[0];
-
-                                                        Website we = new Website(helper_main.secString(title),helper_main.secString(zx+" - "+webView.getOriginalUrl()), helper_main.createDate_norm());
-                                                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                                                        DatabaseReference mRootReference = firebaseDatabase.getReference();
-                                                        DatabaseReference mHeadingReference = mRootReference.child("Users");
-                                                        mHeadingReference.child(user).push().setValue(we);
-                                                    }
-
-                                            }
-
-                                                webView.loadUrl("about:blank");
-
-                                                webView.loadUrl("file:///android_asset/kidsportal.html");
-                                                //Log.d("", zx +"  >>>  "+jae);
-                                                Toast.makeText(activity, "PAGE REDIRECTED as it contains inappropriate content.",
-                                                        Toast.LENGTH_LONG).show();
-                                                stop = true;
-                                                webView.setVisibility(View.VISIBLE);
-                                                webView.getSettings().setLoadsImagesAutomatically(true);
-                                                break;
-                                            }
-                                    }
                                 }
 
 
-                            }
+
+
 
                             }
                         });
@@ -274,7 +266,28 @@ public class helper_webView {
                     db.insert(helper_main.secString(title), helper_main.secString(webView.getOriginalUrl()), "", "", helper_main.createDate_norm());
                 }
             }
+            public void msg(String msg){
 
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(activity);
+                builder1.setMessage(msg);
+                builder1.setTitle("Kids Portal");
+                builder1.setCancelable(true);
+
+                builder1.setPositiveButton(
+                        "Okay",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                dialog.cancel();
+                            }
+                        });
+
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+
+
+            }
             private final Map<String, Boolean> loadedUrls = new HashMap<>();
             // could simply place this section inside and if/else statement
             // inside the activities webview client.  but this way there is a class

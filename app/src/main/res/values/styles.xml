@@ -10,7 +10,7 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="@attr/customTextViewStyle">@style/EditTextStyle</item>
+        <item name="customTextViewStyle">@style/EditTextStyle</item>
     </style>
 
     <style name="EditTextStyle" parent="AppTheme">
@@ -31,7 +31,7 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="@attr/customTextViewStyle">@style/EditTextStyle_blue</item>
+        <item name="customTextViewStyle">@style/EditTextStyle_blue</item>
     </style>
 
     <style name="EditTextStyle_blue" parent="AppTheme_blue">
@@ -44,7 +44,7 @@
 
     <!-- pink -->
 
-    <style name="AppTheme_pink" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style  name="AppTheme_pink" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary_pink</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_pink</item>
         <item name="colorAccent">@color/colorAccent_pink</item>
@@ -52,7 +52,7 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="@attr/customTextViewStyle">@style/EditTextStyle_pink</item>
+        <item name="customTextViewStyle">@style/EditTextStyle_pink</item>
     </style>
 
     <style name="EditTextStyle_pink" parent="AppTheme">
@@ -73,7 +73,7 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="@attr/customTextViewStyle">@style/EditTextStyle_purple</item>
+        <item name="customTextViewStyle">@style/EditTextStyle_purple</item>
     </style>
 
     <style name="EditTextStyle_purple" parent="AppTheme_blue">
@@ -94,7 +94,7 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="@attr/customTextViewStyle">@style/EditTextStyle_teal</item>
+        <item name="customTextViewStyle">@style/EditTextStyle_teal</item>
     </style>
 
     <style name="EditTextStyle_teal" parent="AppTheme">
@@ -115,7 +115,7 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="@attr/customTextViewStyle">@style/EditTextStyle_red</item>
+        <item name="customTextViewStyle">@style/EditTextStyle_red</item>
     </style>
 
     <style name="EditTextStyle_red" parent="AppTheme_blue">
@@ -136,7 +136,7 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="@attr/customTextViewStyle">@style/EditTextStyle_orange</item>
+        <item name="customTextViewStyle">@style/EditTextStyle_orange</item>
     </style>
 
     <style name="EditTextStyle_orange" parent="AppTheme_blue">
@@ -157,7 +157,7 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="@attr/customTextViewStyle">@style/EditTextStyle_brown</item>
+        <item name="customTextViewStyle">@style/EditTextStyle_brown</item>
     </style>
 
     <style name="EditTextStyle_brown" parent="AppTheme">
@@ -178,7 +178,7 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="@attr/customTextViewStyle">@style/EditTextStyle_grey</item>
+        <item name="customTextViewStyle">@style/EditTextStyle_grey</item>
     </style>
 
     <style name="EditTextStyle_grey" parent="AppTheme_blue">
@@ -199,7 +199,7 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="@attr/customTextViewStyle">@style/EditTextStyle_darkGrey</item>
+        <item name="customTextViewStyle">@style/EditTextStyle_darkGrey</item>
     </style>
 
     <style name="EditTextStyle_darkGrey" parent="AppTheme_blue">

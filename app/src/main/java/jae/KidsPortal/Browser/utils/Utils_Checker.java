@@ -10,7 +10,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,7 +23,7 @@ import java.util.Set;
 public class Utils_Checker {
     private static final String eng = "english";
     private static final String tag = "tagalog";
-    private static final Set<String> xWords = new HashSet<>();
+    private static final HashSet<String> xWords = new HashSet<>();
 
     public static void init(final Context context){
         new AsyncTask<Void, Void, Void>() {
@@ -42,14 +45,14 @@ public class Utils_Checker {
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
         String line;
         while ((line = bufferedReader.readLine()) != null){
-            xWords.add(line);
+            xWords.add(line.toLowerCase());
 
         }
 
         stream = context.getAssets().open(tag);
         inputStreamReader = new InputStreamReader(stream);
         bufferedReader = new BufferedReader(inputStreamReader);
-        while ((line = bufferedReader.readLine()) != null) xWords.add(line);
+        while ((line = bufferedReader.readLine()) != null) xWords.add(line.toLowerCase());
 
         bufferedReader.close();
         inputStreamReader.close();
@@ -132,8 +135,13 @@ public class Utils_Checker {
         return len;
     }
 
-    public Set<String> getXwords(){
-        return xWords;
+    public Set<String> getXwords()
+    {
+
+        List<String> wrds = new ArrayList<String>(xWords);
+        Collections.sort(wrds);
+        Set<String> set = new HashSet<String>(wrds);
+        return set;
     }
 
 

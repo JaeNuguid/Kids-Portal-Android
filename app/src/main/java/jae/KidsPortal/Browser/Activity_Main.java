@@ -1,6 +1,8 @@
 package jae.KidsPortal.Browser;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -17,6 +19,12 @@ import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +53,8 @@ public class Activity_Main extends AppCompatActivity{
     private Toolbar toolbar;
     // Others
     private SharedPreferences sharedPref;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("Messages");
 
     public String user;
 
@@ -67,10 +77,10 @@ public class Activity_Main extends AppCompatActivity{
         if( getIntent().getExtras() !=null) {
             Bundle b = getIntent().getExtras();
 
-            if (b.containsKey("username")) {
-                if (b.getString("username").length() > 2) {
-                    Toast.makeText(this,"Logged in: "+b.getString("username"), Toast.LENGTH_LONG).show();
-                    sharedPref.edit().putString("username", b.getString("username")).apply();
+            if (b.containsKey("user")) {
+                if (b.getString("user").length() > 2) {
+                    Toast.makeText(this,"Logged in: "+b.getString("user"), Toast.LENGTH_LONG).show();
+                    sharedPref.edit().putString("user", b.getString("user")).apply();
                     sharedPref.edit().putBoolean("loggedIn", true).apply();
                    helper_main.grantPermissionsStorage(activity);
                 }
@@ -161,6 +171,49 @@ public class Activity_Main extends AppCompatActivity{
         setupViewPager(viewPager);
         helper_toolbar.toolbarGestures(activity, toolbar, viewPager);
         onNewIntent(getIntent());
+
+
+
+        myRef.child(sharedPref.getString("user", "")).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Messages MSG = dataSnapshot.getValue(Messages.class);
+
+
+                    if (!MSG.getMessage().equals("jae35")) {
+                       msg(MSG.getMessage());
+                       myRef.child(sharedPref.getString("user", "")).setValue(new Messages());
+                    }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }});
+
+    }
+            public void msg(String msg){
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage("Your parent/guardian has sent you a message:\n\n"+msg);
+        builder1.setTitle("Kids Portal - Message");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Okay",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.cancel();
+                    }
+                });
+
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
 
 
     }

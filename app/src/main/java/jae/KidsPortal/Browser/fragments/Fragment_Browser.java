@@ -64,6 +64,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 
 import jae.KidsPortal.Browser.Activity_Main;
 import jae.KidsPortal.Browser.Login;
@@ -540,81 +543,65 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
         public void onProgressChanged(WebView view, int progress) {
 
             final Utils_Checker checker = new Utils_Checker();
-            final WebView vview = view;
-            vview.getSettings().setLoadsImagesAutomatically(false);
-            vview.setVisibility(View.GONE);
+            final WebView webView = view;
+            webView.getSettings().setLoadsImagesAutomatically(false);
+            webView.setVisibility(View.GONE);
             view.evaluateJavascript(
                     "(function() { return ('<html>'+document.getElementsByTagName('html')[0].innerText+'</html>'); })();",
                     new ValueCallback<String>() {
                         @Override
                         public void onReceiveValue(String html) {
-                            String newY = html.trim().replaceAll(" +", " ");;
+
+                            String newY = html.trim().replaceAll(" +", " ");
+
                             String newX = newY.replaceAll("[^A-Za-z]", " ");
                             String[] newZ = newX.split(" ");
 
-                            boolean stop = false;
+                            HashSet<String> webText = new HashSet<String>(Arrays.asList(newZ));
 
-                            for(String zx : newZ){
+                            String tit="",dat="",ur="";
+                            if (!Collections.disjoint(webText, checker.getXwords())) {
 
-                                if(stop) {
-                                    stop = true;
-                                    break;
-                                }
-                                if(zx.length() >2 ){
-                                    for(String jae : checker.getXwords()){
+                                String title = helper_webView.getTitle(activity, webView);
+                                tit = helper_main.secString(title) ;
+                                ur = helper_main.secString(webView.getOriginalUrl()) ;
+                                dat = helper_main.createDate_norm();
 
-                                        //if(checker.patternCheck(zx.toLowerCase(),jae.toLowerCase())){
-                                        //    webView.loadUrl("http://www.kidrex.org");
-                                        //    Log.d("", zx +"  >>>  "+jae);
-                                        //   Toast.makeText(activity, "PAGE BLOCKED - It contains inappropriate content!",
-                                        //            Toast.LENGTH_LONG).show();
-                                        //    stop = true;
-                                        //    break;
-                                        if(zx.toLowerCase().equals(jae.toLowerCase())){
+                                webView.loadUrl("about:blank");
 
-                                            DbAdapter_Reports db = new DbAdapter_Reports(activity);
-                                            db.open();
-                                            db.deleteDouble(vview.getUrl());
+                                webView.loadUrl("file:///android_asset/kidsportal.html");
 
-                                            String title = helper_webView.getTitle(activity, vview);
+                                DbAdapter_Reports db = new DbAdapter_Reports(activity);
+                                db.open();
+                                db.deleteDouble(webView.getUrl());
 
-                                            if(db.isExist(helper_main.createDate_norm())){
-                                                Log.d(TAG, "Entry exists" + vview.getUrl());
-                                            }else{
-                                            db.insert(helper_main.secString(title), helper_main.secString(vview.getOriginalUrl()), "", "", helper_main.createDate_norm());
-                                                if(sharedPref.getString("username","").length() > 2){
-                                                    String user = (sharedPref.getString("username","")).split("@", 2)[0];
 
-                                                    Website we = new Website(zx+" - "+helper_main.secString(title),helper_main.secString(vview.getOriginalUrl()), helper_main.createDate_norm());
-                                                    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                                                    DatabaseReference mRootReference = firebaseDatabase.getReference();
-                                                    DatabaseReference mHeadingReference = mRootReference.child("Users");
-                                                    mHeadingReference.child(user).push().setValue(we);
-                                            }
+                                if(db.isExist(helper_main.createDate_norm())){
+                                    Log.i(TAG, "Entry exists" + webView.getUrl());
+                                }else{
+                                    db.insert(tit,ur,"", "", dat);
+                                    if(sharedPref.getString("user","").length() > 2){
+                                        msg("The page has been blocked. It contains inappropriate content!");
+                                        String user = (sharedPref.getString("user",""));
 
-                                            }
-                                          //  Log.d("", zx+" >> "+jae);
-                                           vview.loadUrl("about:blank");
-                                           vview.loadUrl("file:///android_asset/kidsportal.html");
-                                     //      Log.d("", zx +"  >>>  "+jae);
-                                            Toast.makeText(activity, "PAGE BLOCKED - It contains inappropriate content!",
-                                                    Toast.LENGTH_LONG).show();
-                                            stop = true;
-
-                                            vview.setVisibility(View.VISIBLE);
-                                            vview.getSettings().setLoadsImagesAutomatically(true);
-                                            break;
-                                        }
+                                        Website we = new Website(tit,ur, dat);
+                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                        DatabaseReference myRef = database.getReference("Reports");
+                                        myRef.child(user).push().setValue(we);
                                     }
+
                                 }
 
+                                webView.setVisibility(View.VISIBLE);
+                                webView.getSettings().setLoadsImagesAutomatically(true);
 
                             }
 
+
                         }
                     });
-            vview.getSettings().setLoadsImagesAutomatically(true);
-            vview.setVisibility(View.VISIBLE);
+            webView.getSettings().setLoadsImagesAutomatically(true);
+            webView.setVisibility(View.VISIBLE);
             sharedPref.edit().putString("tab_" + tab_number, helper_webView.getTitle(activity, mWebView)).apply();
             progressBar.setProgress(progress);
             progressBar.setVisibility(progress == 100 ? View.GONE : View.VISIBLE);
@@ -657,7 +644,28 @@ public class Fragment_Browser extends Fragment implements ObservableScrollViewCa
                 }
             }
         }
+        public void msg(String msg){
 
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(activity);
+            builder1.setMessage(msg);
+            builder1.setTitle("Kids Portal");
+            builder1.setCancelable(true);
+
+            builder1.setPositiveButton(
+                    "Okay",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            dialog.cancel();
+                        }
+                    });
+
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+
+
+        }
         public boolean onShowFileChooser(
                 WebView webView, ValueCallback<Uri[]> filePathCallback,
                 FileChooserParams fileChooserParams) {
