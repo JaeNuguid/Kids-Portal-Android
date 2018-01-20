@@ -62,7 +62,7 @@ Kids Portal uses an algorithm that runs asynchronously to ensure maximum detecti
 ### Kids Portal Web Browser (Windows PC version) Screenshots<a id="windowsBrowserSS"></a>
 <br>
 <a href="https://github.com/JaeNuguid/Kids-Portal-Web-Browser/blob/master/newKidsPortal/Resources/desktop.JPG?raw=true"><img src="https://github.com/JaeNuguid/Kids-Portal-Web-Browser/blob/master/newKidsPortal/Resources/desktop.JPG?raw=true" width="350" height="220" hspace="20"/></a>
-<a href="https://github.com/JaeNuguid/Kids-Portal-Web-Browser/blob/master/newKidsPortal/Resources/desktop2.JPG?raw=true"><img src="https://github.com/JaeNuguid/Kids-Portal-Web-Browser/blob/master/newKidsPortal/Resources/desktop2.JPG?raw=true" width="350" height="220"hspace="20"/></a>
+<a href="https://github.com/JaeNuguid/Kids-Portal-Web-Browser/blob/master/newKidsPortal/Resources/desktop2.JPG?raw=true"><img src="https://github.com/JaeNuguid/Kids-Portal-Web-Browser/blob/master/newKidsPortal/Resources/desktop2.JPG?raw=true" width="350" height="220" hspace="20"/></a>
 <a href="https://github.com/JaeNuguid/Kids-Portal-Web-Browser/blob/master/newKidsPortal/Resources/desktop3.JPG?raw=true"><img src="https://github.com/JaeNuguid/Kids-Portal-Web-Browser/blob/master/newKidsPortal/Resources/desktop3.JPG?raw=true" width="350" height="220"/></a>
  
 <br>
@@ -137,17 +137,18 @@ Kids Portal uses an algorithm that runs asynchronously to ensure maximum detecti
 <br>
 
 ### Kids Portal Web Browser (Windows PC version) Download Links<a id="windowsLinks"></a>
-- <a href="">Amazon</a>
-- <a href="">Github</a>
-- <a href="">PlayStore</a> (Not yet available)
+- <a href="">Amazon</a> 
+- <a href="https://github.com/JaeNuguid/Kids-Portal-Web-Browser/releases/download/v1.0/Kids.Portal.Setup.exe">Github</a>
+- <a href="https://drive.google.com/open?id=1kmafAfZWXeKhzREQn8wLf4bBmS5S1Cg3">Google Drive</a> 
 
 <br>
 <br>
 <br>
 
 ### Kids Portal Web Browser (Android version) Download Links<a id="androidLinks"></a>
-- <a href=""><a href="">Amazon</a>
-- <a href="">Github</a>
+- <a href=""><a href="https://www.amazon.com/gp/product/B0793ZKSDD">Amazon</a>
+- <a href="https://github.com/JaeNuguid/Kids-Portal-Web-Browser/releases/download/v1.0/Kids.Portal.Web.Browser.apk">Github</a>
+- <a href="https://drive.google.com/open?id=1wMRoeU6ev5o8-Fbg4iNe2LU4Ps0R4uF6">Google Drive</a> 
 - <a href="">PlayStore</a> (Not yet available)
 
 <br>
@@ -155,8 +156,9 @@ Kids Portal uses an algorithm that runs asynchronously to ensure maximum detecti
 <br>
 
 ### Kids Portal Parent-App Download Links<a id="parentAppLinks"></a>
-- <a href="">Amazon</a>
-- <a href="">Github</a>
+- <a href="https://www.amazon.com/gp/product/B07933CJ67">Amazon</a>
+- <a href="https://github.com/JaeNuguid/Kids-Portal-Web-Browser/releases/download/v1.0/Kids.Portal.Parent-App.apk">Github</a>
+- <a href="https://drive.google.com/open?id=1btYc4rwx2uXB2igAK67GAP6FLrgP6S_T">Google Drive</a> 
 - <a href="">PlayStore</a> (Not yet available)
 
 <br>
@@ -219,57 +221,72 @@ a. View Reports - Where you can view the reports of the browser your account is 
 - If you encounter an error or device malfunction caused by Kids Portal Windows Version. Please [download this tool](https://github.com/JaeNuguid/Kids-Portal-Web-Browser/releases/download/v1.0/Fix.Kids.Portal.exe) and just click "Fix It". It will fix any error caused by Kids Portal. If the error still persist, please contact as at Support@KidsPortal.com.
 - Any error encountered in an Android device caused by Kids Portal, please contact as at Support@KidsPortal.com, but chances are, the developers are already working to fix it.
 
+<img src="https://github.com/JaeNuguid/Kids-Portal-Web-Browser/blob/master/newKidsPortal/Resources/fix.JPG?raw=true" width="300" height="180"/>
+
 <br>
 <br>
 <br>
 
 ## Frequently Asked Questions (FAQ)<a id="faq"></a>
-- Q: There's a persisting error I can't fix, what will I do?
+- Q: __There's a persisting error I can't fix, what will I do?__
 - A: Please refer to [this guide](https://jaenuguid.github.io/Kids-Portal-Web-Browser/#errorGuide).
 
 <br>
 
-- Q: Why do I receive errors when changing some configurations?
+- Q: __Why do I receive errors when changing some configurations?__
 - A: Kids Portal is relying on a free real-time database to transfer data between devices. Error occurs due to out-of-sync instances that may be caused by delays, bottlenecks, and more.
 
 <br>
 
-- Q: Why is there no registration form in Kids Portal Parent-App?
+- Q: __Why is there no registration form in Kids Portal Parent-App?__
 - A: For security reasons.
 
 <br>
 
-- Q: How can I fix errors or malfunction caused by Kids Portal?
+- Q: __Why is there no logout option in Kids Portal Web Browser?__
+- A: There is, but it is kind of hidden.
+- A: In our web browser in PC version, you will have to log out through our [fix-it tool](https://jaenuguid.github.io/Kids-Portal-Web-Browser/#errorGuide), then restart you computer.
+- A: In our web browser in Android version, you will have to enter "//setting" in the navigation bar. Not actually logging out completely, but changing user account.
+- A: These troublesome steps are for extra layer of security.
+
+<br>
+
+- Q: __For Kids Portal Web Browser (Android version), how to change the account associated with it?__
+- A: In the navigation bar, enter "//setting". You can then login and use a different account.
+
+<br>
+
+- Q: __How can I fix errors or malfunction caused by Kids Portal?__
 - A: Please refer to [this guide](https://jaenuguid.github.io/Kids-Portal-Web-Browser/#errorGuide).
 
 <br>
 
-- Q: Are English and Tagalog the only supported language for protection(content filtering)?
-- A: Yes, as of now. However, developers are actively looking for an efficient solution that will support multiple Languages without affecting the device performance.
+- Q: __Are English and Tagalog the only supported language for protection(content filtering)?__
+- A: As of now, yes. However, developers are actively looking for an efficient solution that will support multiple Languages without affecting the device performance.
 
 <br>
 
-- Q: Why is this open-source?
+- Q: __Why is this open-source?__
 - A: Benefits such as cost, flexibility, freedom, security, and accountability. We also would like some help and guidance from professionals.
 
 <br>
 
-- Q: How is this open-source?
+- Q: __How is this open-source?__
 - A: People can use, study, modify, and freely distribute both the codes and software.
 
 <br>
 
-- Q: How does Kids Portal scrapes content from web pages?
+- Q: __How does Kids Portal scrapes content from web pages?__
 - A: Kids Portal uses the native libraries and then HTML Agility Pack to parse the content. 
 
 <br>
 
-- Q: What's the algorithm used to match Strings?
+- Q: __What's the algorithm used to match Strings?__
 - A: Kids Portal mainly uses Boyer-Moore algorithm, but developers are regularly experimenting with other algorithms.
 
 <br>
 
-- Q: Is Kids Portal a finished product?
+- Q: __Is Kids Portal a finished product?__
 - A: No, it is still in its infancy. The developers are regularly planning and developing new implementations to further improve the software, hopefully with the help of contributors.
 
 <br>
